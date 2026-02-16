@@ -47,9 +47,6 @@ const Navbar: React.FC = () => {
 
         {/* Desktop CTA */}
         <div className="hidden lg:flex items-center gap-4">
-            <button className="text-white hover:text-brand-300 font-medium text-sm transition-colors">
-                Login
-            </button>
             <button className="bg-brand-500 hover:bg-brand-400 text-white px-6 py-2.5 rounded-full font-bold text-sm transition-all transform hover:scale-105 shadow-[0_0_15px_rgba(32,98,115,0.4)]">
                 Get a Quote
             </button>
