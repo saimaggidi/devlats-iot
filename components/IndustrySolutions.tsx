@@ -56,7 +56,7 @@ const IndustrySolutions: React.FC = () => {
                     Tailored for <span className="text-brand-600">your sector</span>
                 </h2>
                 <p className="text-slate-600 mt-4 text-lg">
-                    Cloudi-Fi adapts to the unique connectivity and security challenges of your industry, ensuring a seamless experience for every user.
+                    Devlats-IoT adapts to the unique connectivity and security challenges of your industry, ensuring a seamless experience for every user.
                 </p>
             </div>
             <button className="hidden md:flex items-center gap-2 text-brand-600 font-bold hover:text-brand-800 transition-colors group mt-6 md:mt-0">
