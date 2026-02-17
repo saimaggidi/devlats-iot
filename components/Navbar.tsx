@@ -20,7 +20,7 @@ const Navbar: React.FC<NavbarProps> = ({ onGetQuote, onLogoClick, onPlansClick, 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = ['Platform', 'Solutions', 'Plans', 'Partners', 'Resources', 'Company'];
+  const navLinks = ['Platform', 'Solutions', 'Plans', 'Partners'];
 
   const handleLinkClick = (link: string) => {
     if (link === 'Plans') {
@@ -56,7 +56,7 @@ const Navbar: React.FC<NavbarProps> = ({ onGetQuote, onLogoClick, onPlansClick, 
                 <CloudLightning className="w-6 h-6 text-white" />
             </div>
             <span className="text-2xl font-display font-bold text-white tracking-tight">
-                CLOUDI-FI
+                Devlats-IoT
             </span>
         </div>
 
@@ -78,9 +78,6 @@ const Navbar: React.FC<NavbarProps> = ({ onGetQuote, onLogoClick, onPlansClick, 
 
         {/* Desktop CTA */}
         <div className="hidden lg:flex items-center gap-4">
-            <button className="text-white hover:text-brand-300 font-medium text-sm transition-colors">
-                Login
-            </button>
             <button 
                 onClick={onGetQuote}
                 className="bg-brand-500 hover:bg-brand-400 text-white px-6 py-2.5 rounded-full font-bold text-sm transition-all transform hover:scale-105 shadow-[0_0_15px_rgba(32,98,115,0.4)]"
