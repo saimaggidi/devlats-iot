@@ -4,9 +4,11 @@ import { Menu, X, ChevronDown, CloudLightning } from 'lucide-react';
 interface NavbarProps {
   onGetQuote: () => void;
   onLogoClick: () => void;
+  onPlansClick: () => void;
+  onPartnersClick: () => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ onGetQuote, onLogoClick }) => {
+const Navbar: React.FC<NavbarProps> = ({ onGetQuote, onLogoClick, onPlansClick, onPartnersClick }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -18,7 +20,23 @@ const Navbar: React.FC<NavbarProps> = ({ onGetQuote, onLogoClick }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = ['Platform', 'Solutions', 'Partners', 'Resources', 'Company'];
+  const navLinks = ['Platform', 'Solutions', 'Plans', 'Partners', 'Resources', 'Company'];
+
+  const handleLinkClick = (link: string) => {
+    if (link === 'Plans') {
+      onPlansClick();
+    } else if (link === 'Partners') {
+      onPartnersClick();
+    } else {
+      onLogoClick();
+    }
+    setMobileMenuOpen(false);
+  };
+
+  const isActive = (link: string) => {
+      // Simple visual check logic if needed, currently handling mostly via routing resets in parent
+      return false; 
+  }
 
   return (
     <nav
@@ -45,9 +63,14 @@ const Navbar: React.FC<NavbarProps> = ({ onGetQuote, onLogoClick }) => {
         {/* Desktop Nav */}
         <div className="hidden lg:flex items-center gap-8">
           {navLinks.map((link) => (
-            <div key={link} className="relative group cursor-pointer" onClick={onLogoClick}>
-              <span className="text-slate-300 hover:text-white font-medium text-sm flex items-center gap-1 transition-colors">
-                {link} <ChevronDown className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" />
+            <div 
+                key={link} 
+                className="relative group cursor-pointer" 
+                onClick={() => handleLinkClick(link)}
+            >
+              <span className={`text-slate-300 hover:text-white font-medium text-sm flex items-center gap-1 transition-colors ${link === 'Plans' || link === 'Partners' ? 'hover:text-brand-300' : ''}`}>
+                {link} 
+                {(link !== 'Plans' && link !== 'Partners') && <ChevronDown className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" />}
               </span>
             </div>
           ))}
@@ -76,12 +99,12 @@ const Navbar: React.FC<NavbarProps> = ({ onGetQuote, onLogoClick }) => {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="absolute top-full left-0 w-full bg-brand-900 border-b border-brand-800 p-6 flex flex-col gap-4 animate-slide-up shadow-2xl">
+        <div className="absolute top-full left-0 w-full bg-brand-900 border-b border-brand-800 p-6 flex flex-col gap-4 animate-slide-up shadow-2xl h-screen overflow-y-auto pb-32">
             {navLinks.map((link) => (
                 <a 
                     key={link} 
                     href="#" 
-                    onClick={(e) => { e.preventDefault(); setMobileMenuOpen(false); onLogoClick(); }}
+                    onClick={(e) => { e.preventDefault(); handleLinkClick(link); }}
                     className="text-slate-300 hover:text-brand-300 font-medium text-lg border-b border-brand-800 pb-2"
                 >
                     {link}

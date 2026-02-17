@@ -5,6 +5,15 @@ interface HeroProps {
     onStartTrial: () => void;
 }
 
+const clientLogos = [
+  { name: 'Microsoft', url: 'https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg', h: 'h-6 md:h-7' },
+  { name: 'LVMH', url: 'https://upload.wikimedia.org/wikipedia/commons/d/df/LVMH_logo.svg', h: 'h-7 md:h-8' },
+  { name: 'Decathlon', url: 'https://upload.wikimedia.org/wikipedia/commons/a/aa/Decathlon_Logo.svg', h: 'h-5 md:h-6' },
+  { name: 'Siemens', url: 'https://upload.wikimedia.org/wikipedia/commons/5/5f/Siemens-logo.svg', h: 'h-4 md:h-5' },
+  { name: 'Accenture', url: 'https://upload.wikimedia.org/wikipedia/commons/c/cd/Accenture.svg', h: 'h-6 md:h-8' },
+  { name: 'McDonalds', url: 'https://upload.wikimedia.org/wikipedia/commons/3/36/McDonald%27s_Golden_Arches.svg', h: 'h-8 md:h-10' }
+];
+
 const Hero: React.FC<HeroProps> = ({ onStartTrial }) => {
   return (
     <div className="relative min-h-[90vh] bg-slate-950 overflow-hidden flex flex-col justify-center pt-24 lg:pt-32 pb-20">
@@ -167,11 +176,15 @@ const Hero: React.FC<HeroProps> = ({ onStartTrial }) => {
         {/* Clients Strip */}
         <div className="mt-24 pt-10 border-t border-slate-800/50">
             <p className="text-center text-slate-500 text-sm font-semibold mb-8 uppercase tracking-widest">Trusted by global industry leaders</p>
-            <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-8 opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
-                 {['Microsoft', 'LVMH', 'McDonalds', 'Decathlon', 'WPP', 'Schneider Electric'].map((brand, i) => (
-                     <span key={i} className="text-xl md:text-2xl font-display font-bold text-white hover:text-brand-200 cursor-default transition-colors select-none">
-                        {brand}
-                     </span>
+            <div className="flex flex-wrap justify-center items-center gap-x-12 lg:gap-x-20 gap-y-10">
+                 {clientLogos.map((logo, i) => (
+                     <div key={i} className="group relative grayscale hover:grayscale-0 transition-all duration-500">
+                        <img 
+                            src={logo.url} 
+                            alt={logo.name} 
+                            className={`${logo.h} w-auto object-contain brightness-0 invert opacity-40 group-hover:opacity-100 transition-all duration-300`} 
+                        />
+                     </div>
                  ))}
             </div>
         </div>
