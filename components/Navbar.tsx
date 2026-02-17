@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ChevronDown, CloudLightning } from 'lucide-react';
+import { Menu, X, CloudLightning } from 'lucide-react';
 
 interface NavbarProps {
   onGetQuote: () => void;
@@ -70,7 +70,6 @@ const Navbar: React.FC<NavbarProps> = ({ onGetQuote, onLogoClick, onPlansClick, 
             >
               <span className={`text-slate-300 hover:text-white font-medium text-sm flex items-center gap-1 transition-colors ${link === 'Plans' || link === 'Partners' ? 'hover:text-brand-300' : ''}`}>
                 {link} 
-                {(link !== 'Plans' && link !== 'Partners') && <ChevronDown className="w-3 h-3 opacity-50 group-hover:opacity-100 transition-opacity" />}
               </span>
             </div>
           ))}
@@ -78,9 +77,6 @@ const Navbar: React.FC<NavbarProps> = ({ onGetQuote, onLogoClick, onPlansClick, 
 
         {/* Desktop CTA */}
         <div className="hidden lg:flex items-center gap-4">
-            <button className="text-white hover:text-brand-300 font-medium text-sm transition-colors">
-                Login
-            </button>
             <button 
                 onClick={onGetQuote}
                 className="bg-brand-500 hover:bg-brand-400 text-white px-6 py-2.5 rounded-full font-bold text-sm transition-all transform hover:scale-105 shadow-[0_0_15px_rgba(32,98,115,0.4)]"
