@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowRight, ShieldCheck, Globe, Wifi, Smartphone, Cpu, CheckCircle2, PlayCircle } from 'lucide-react';
 
 interface HeroProps {
@@ -15,6 +15,41 @@ const clientLogos = [
 ];
 
 const Hero: React.FC<HeroProps> = ({ onStartTrial }) => {
+  const [text1, setText1] = useState('');
+  const [text2, setText2] = useState('');
+  const [isTyping1, setIsTyping1] = useState(true);
+  
+  const line1Full = "The Last Mile of";
+  const line2Full = "Zero Trust";
+
+  useEffect(() => {
+    let timeout: ReturnType<typeof setTimeout>;
+    
+    if (text1.length < line1Full.length) {
+      timeout = setTimeout(() => {
+        setText1(line1Full.slice(0, text1.length + 1));
+      }, 50);
+    } else if (isTyping1) {
+       // Pause briefly before starting line 2
+       timeout = setTimeout(() => {
+           setIsTyping1(false);
+       }, 200);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [text1, isTyping1]);
+
+  useEffect(() => {
+    let timeout: ReturnType<typeof setTimeout>;
+
+    if (!isTyping1 && text2.length < line2Full.length) {
+        timeout = setTimeout(() => {
+            setText2(line2Full.slice(0, text2.length + 1));
+        }, 100);
+    }
+    return () => clearTimeout(timeout);
+  }, [text2, isTyping1]);
+
   return (
     <div className="relative min-h-[90vh] bg-slate-950 overflow-hidden flex flex-col justify-center pt-24 lg:pt-32 pb-20">
       {/* Background Effects */}
@@ -42,11 +77,14 @@ const Hero: React.FC<HeroProps> = ({ onStartTrial }) => {
                     Identity-First Security
                  </div>
 
-                 <h1 className="text-5xl lg:text-7xl font-display font-bold text-white leading-[1.1] tracking-tight">
-                    The Last Mile of <br/>
+                 <h1 className="text-5xl lg:text-7xl font-display font-bold text-white leading-[1.1] tracking-tight min-h-[3.3em] lg:min-h-[2.2em]">
+                    {text1}
+                    {isTyping1 && <span className="animate-pulse text-brand-400">|</span>}
+                    <br/>
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-300 via-cyan-200 to-brand-100">
-                        Zero Trust
+                        {text2}
                     </span>
+                    {!isTyping1 && <span className="animate-pulse text-brand-400 ml-1">|</span>}
                  </h1>
 
                  <p className="text-lg text-slate-400 leading-relaxed max-w-xl mx-auto lg:mx-0">

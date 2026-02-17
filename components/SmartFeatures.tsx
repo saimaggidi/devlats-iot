@@ -68,13 +68,7 @@ const SmartFeatures: React.FC = () => {
           ))}
           
           {/* Call to Action Card */}
-          <div className="bg-gradient-to-br from-brand-500 to-brand-700 p-6 rounded-2xl flex flex-col justify-center items-center text-center">
-            <h3 className="text-xl font-bold mb-2 text-white">Explore API</h3>
-            <p className="text-sm text-brand-100 mb-6">Integrate these capabilities directly into your workflow.</p>
-            <button className="px-4 py-2 bg-white text-brand-900 font-bold rounded-lg hover:bg-brand-50 transition-colors text-sm">
-                View Documentation
-            </button>
-          </div>
+          
         </div>
       </div>
     </section>

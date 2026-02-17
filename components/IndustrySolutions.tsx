@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ShoppingBag, Plane, Building2, GraduationCap, ArrowRight, CheckCircle2 } from 'lucide-react';
 
 const industries = [
@@ -42,6 +42,15 @@ const industries = [
 
 const IndustrySolutions: React.FC = () => {
   const [activeTab, setActiveTab] = useState(0);
+  const DURATION = 5000; // 5 seconds per slide
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveTab((prev) => (prev + 1) % industries.length);
+    }, DURATION);
+
+    return () => clearInterval(timer);
+  }, [activeTab]);
 
   return (
     <section className="py-24 bg-slate-50 font-sans">
@@ -68,24 +77,52 @@ const IndustrySolutions: React.FC = () => {
          </div>
 
          {/* Navigation Bar (Dark Teal Strip) */}
-         <div className="bg-brand-900 rounded-2xl p-2 mb-8 shadow-xl overflow-x-auto">
+         <div className="bg-brand-900 rounded-2xl p-2 mb-8 shadow-xl overflow-x-auto relative">
             <div className="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-2 min-w-max md:min-w-0">
                 {industries.map((item, idx) => (
                     <button
                         key={idx}
                         onClick={() => setActiveTab(idx)}
-                        className={`flex items-center gap-4 p-4 rounded-xl transition-all duration-300 text-left group min-w-[250px] md:min-w-0 ${
+                        className={`relative flex items-center gap-4 p-4 rounded-xl transition-all duration-300 text-left group min-w-[250px] md:min-w-0 overflow-hidden ${
                             activeTab === idx 
-                            ? 'bg-white text-slate-900 shadow-lg scale-[1.02]' 
+                            ? 'bg-white text-slate-900 shadow-lg scale-[1.02] z-10' 
                             : 'text-white hover:bg-brand-800'
                         }`}
                     >
-                        <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-colors ${
+                        {/* Border Animation SVG */}
+                        {activeTab === idx && (
+                            <svg className="absolute inset-0 w-full h-full pointer-events-none rounded-xl z-20">
+                                <rect 
+                                    x="1" y="1" 
+                                    width="99%" height="98%" 
+                                    rx="12" ry="12" // Matches rounded-xl
+                                    fill="none" 
+                                    stroke="#206273" // Brand-500 color for visibility on white
+                                    strokeWidth="3"
+                                    strokeLinecap="round"
+                                    pathLength="100"
+                                    className="origin-center animate-[drawBorder_5s_linear_forwards]"
+                                    style={{
+                                        strokeDasharray: 100,
+                                        strokeDashoffset: 100
+                                    }}
+                                />
+                                <style>{`
+                                    @keyframes drawBorder {
+                                        to {
+                                            stroke-dashoffset: 0;
+                                        }
+                                    }
+                                `}</style>
+                            </svg>
+                        )}
+
+                        <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-colors relative z-10 ${
                              activeTab === idx ? 'bg-brand-900 text-white' : 'bg-white text-brand-900'
                         }`}>
                             <item.icon className="w-5 h-5" />
                         </div>
-                        <div>
+                        <div className="relative z-10">
                             <div className="font-bold text-sm leading-tight">{item.title}</div>
                             <div className={`text-xs mt-1 ${activeTab === idx ? 'text-slate-500' : 'text-brand-200'}`}>{item.subtitle}</div>
                         </div>
@@ -95,7 +132,7 @@ const IndustrySolutions: React.FC = () => {
          </div>
 
          {/* Main Content Area */}
-         <div className="bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-100 flex flex-col lg:flex-row min-h-[550px] animate-fade-in">
+         <div className="bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-100 flex flex-col lg:flex-row min-h-[550px] animate-fade-in transition-all duration-500">
             
             {/* Left: Image Area */}
             <div className="lg:w-7/12 relative h-64 lg:h-auto overflow-hidden">
@@ -104,7 +141,8 @@ const IndustrySolutions: React.FC = () => {
                      <img 
                         src={industries[activeTab].image} 
                         alt={industries[activeTab].title} 
-                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 hover:scale-105"
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-[5000ms] ease-linear hover:scale-105"
+                        style={{ transform: 'scale(1.05)', animation: 'zoomOut 5s ease-out forwards' }}
                      />
                      <div className="absolute inset-0 bg-brand-900/10 mix-blend-multiply"></div>
                 </div>
@@ -112,19 +150,19 @@ const IndustrySolutions: React.FC = () => {
 
             {/* Right: Content Card */}
             <div className="lg:w-5/12 p-8 md:p-12 lg:p-16 flex flex-col justify-center bg-white relative z-10">
-                 <div className="w-14 h-14 bg-brand-50 rounded-2xl flex items-center justify-center mb-8">
+                 <div className="w-14 h-14 bg-brand-50 rounded-2xl flex items-center justify-center mb-8 animate-slide-up">
                       {React.createElement(industries[activeTab].icon, { className: "w-7 h-7 text-brand-600" })}
                  </div>
                  
-                 <h3 className="text-3xl font-display font-bold text-slate-900 mb-6">
+                 <h3 className="text-3xl font-display font-bold text-slate-900 mb-6 animate-slide-up" style={{ animationDelay: '0.1s' }}>
                      {industries[activeTab].title}
                  </h3>
                  
-                 <p className="text-slate-600 text-lg leading-relaxed mb-10">
+                 <p className="text-slate-600 text-lg leading-relaxed mb-10 animate-slide-up" style={{ animationDelay: '0.2s' }}>
                      {industries[activeTab].description}
                  </p>
 
-                 <div className="space-y-5 mb-10">
+                 <div className="space-y-5 mb-10 animate-slide-up" style={{ animationDelay: '0.3s' }}>
                      {industries[activeTab].features.map((feature, i) => (
                          <div key={i} className="flex items-start gap-3 group">
                              <CheckCircle2 className="w-6 h-6 text-brand-500 shrink-0 mt-0.5 group-hover:scale-110 transition-transform" />
@@ -133,7 +171,7 @@ const IndustrySolutions: React.FC = () => {
                      ))}
                  </div>
 
-                 <button className="self-start text-brand-700 font-bold text-sm border-b-2 border-brand-200 hover:border-brand-600 transition-all pb-1 mt-auto">
+                 <button className="self-start text-brand-700 font-bold text-sm border-b-2 border-brand-200 hover:border-brand-600 transition-all pb-1 mt-auto animate-slide-up" style={{ animationDelay: '0.4s' }}>
                      Learn more about {industries[activeTab].title.split(' ')[0]}
                  </button>
             </div>
