@@ -1,7 +1,11 @@
 import React from 'react';
 import { ArrowRight, ShieldCheck, Globe, Wifi, Smartphone, Cpu, CheckCircle2, PlayCircle } from 'lucide-react';
 
-const Hero: React.FC = () => {
+interface HeroProps {
+    onStartTrial: () => void;
+}
+
+const Hero: React.FC<HeroProps> = ({ onStartTrial }) => {
   return (
     <div className="relative min-h-[90vh] bg-slate-950 overflow-hidden flex flex-col justify-center pt-24 lg:pt-32 pb-20">
       {/* Background Effects */}
@@ -42,7 +46,10 @@ const Hero: React.FC = () => {
 
                  {/* Action Buttons */}
                  <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-2">
-                    <button className="bg-brand-500 hover:bg-brand-400 text-white px-8 py-4 rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(32,98,115,0.3)] hover:shadow-[0_0_30px_rgba(32,98,115,0.5)] flex items-center justify-center gap-2 group">
+                    <button 
+                        onClick={onStartTrial}
+                        className="bg-brand-500 hover:bg-brand-400 text-white px-8 py-4 rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(32,98,115,0.3)] hover:shadow-[0_0_30px_rgba(32,98,115,0.5)] flex items-center justify-center gap-2 group"
+                    >
                         Start Free Trial <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </button>
                     <button className="px-8 py-4 rounded-xl font-bold text-white border border-slate-700 hover:bg-slate-800/50 transition-all flex items-center justify-center gap-2">
