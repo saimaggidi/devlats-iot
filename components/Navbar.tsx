@@ -68,7 +68,7 @@ const Navbar: React.FC<NavbarProps> = ({ onGetQuote, onLogoClick, onPlansClick, 
                 className="relative group cursor-pointer" 
                 onClick={() => handleLinkClick(link)}
             >
-              <span className={`text-slate-300 hover:text-white font-medium text-sm flex items-center gap-1 transition-colors ${link === 'Plans' || link === 'Partners' ? 'hover:text-brand-300' : ''}`}>
+              <span className={`text-slate-300 hover:text-white font-medium text-[1.2rem] flex items-center gap-1 transition-colors ${link === 'Plans' || link === 'Partners' ? 'hover:text-brand-300' : ''}`}>
                 {link} 
               </span>
             </div>
