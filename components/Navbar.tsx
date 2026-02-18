@@ -6,9 +6,16 @@ interface NavbarProps {
   onLogoClick: () => void;
   onPlansClick: () => void;
   onPartnersClick: () => void;
+  variant?: 'home' | 'inner';
 }
 
-const Navbar: React.FC<NavbarProps> = ({ onGetQuote, onLogoClick, onPlansClick, onPartnersClick }) => {
+const Navbar: React.FC<NavbarProps> = ({ 
+  onGetQuote, 
+  onLogoClick, 
+  onPlansClick, 
+  onPartnersClick,
+  variant = 'home'
+}) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -33,18 +40,32 @@ const Navbar: React.FC<NavbarProps> = ({ onGetQuote, onLogoClick, onPlansClick, 
     setMobileMenuOpen(false);
   };
 
-  const isActive = (link: string) => {
-      // Simple visual check logic if needed, currently handling mostly via routing resets in parent
-      return false; 
-  }
+  // Determine styles based on variant and scroll state
+  // Dark State = Scrolled OR Mobile Menu Open OR Home Variant (Initial)
+  // Actually, Home Variant Initial is Transparent (with white text). 
+  // Let's separate Background and Text Logic.
+  
+  // Background Logic
+  const navBackgroundClass = (isScrolled || mobileMenuOpen)
+    ? 'bg-brand-950/90 backdrop-blur-md shadow-lg border-b border-brand-800 py-3' // Scrolled State (Always Dark)
+    : variant === 'home'
+        ? 'bg-transparent py-5' // Home Initial (Transparent)
+        : 'bg-white/90 backdrop-blur-md shadow-sm border-b border-slate-200 py-4'; // Inner Initial (White)
+
+  // Text/Content Logic
+  // We want White Text if: Scrolled OR Mobile Open OR Home Variant (Initial)
+  // We want Dark Text if: Inner Variant (Initial) AND Not Scrolled AND Not Mobile Open
+  const isDarkContent = isScrolled || mobileMenuOpen || variant === 'home';
+
+  const textColorClass = isDarkContent ? 'text-slate-300' : 'text-slate-600';
+  const hoverColorClass = isDarkContent ? 'hover:text-white' : 'hover:text-brand-600';
+  const logoTextClass = isDarkContent ? 'text-white' : 'text-brand-950';
+  const toggleButtonClass = isDarkContent ? 'text-white' : 'text-slate-900';
+  const logoBoxClass = isDarkContent ? 'bg-brand-500' : 'bg-brand-600';
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        isScrolled || mobileMenuOpen
-          ? 'bg-brand-950/90 backdrop-blur-md shadow-lg border-b border-brand-800 py-3'
-          : 'bg-transparent py-5'
-      }`}
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${navBackgroundClass}`}
     >
       <div className="container mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
@@ -52,10 +73,10 @@ const Navbar: React.FC<NavbarProps> = ({ onGetQuote, onLogoClick, onPlansClick, 
             className="flex items-center gap-2 cursor-pointer group"
             onClick={onLogoClick}
         >
-            <div className="bg-brand-500 p-1.5 rounded-lg group-hover:rotate-12 transition-transform shadow-[0_0_10px_rgba(32,98,115,0.5)]">
+            <div className={`p-1.5 rounded-lg group-hover:rotate-12 transition-transform shadow-[0_0_10px_rgba(32,98,115,0.5)] ${logoBoxClass}`}>
                 <CloudLightning className="w-6 h-6 text-white" />
             </div>
-            <span className="text-2xl font-display font-bold text-white tracking-tight">
+            <span className={`text-2xl font-display font-bold tracking-tight transition-colors ${logoTextClass}`}>
                 Devlats-IoT
             </span>
         </div>
@@ -68,7 +89,7 @@ const Navbar: React.FC<NavbarProps> = ({ onGetQuote, onLogoClick, onPlansClick, 
                 className="relative group cursor-pointer" 
                 onClick={() => handleLinkClick(link)}
             >
-              <span className={`text-slate-300 hover:text-white font-medium text-[1.2rem] flex items-center gap-1 transition-colors ${link === 'Plans' || link === 'Partners' ? 'hover:text-brand-300' : ''}`}>
+              <span className={`font-medium text-[1.2rem] flex items-center gap-1 transition-colors ${textColorClass} ${hoverColorClass}`}>
                 {link} 
               </span>
             </div>
@@ -87,7 +108,7 @@ const Navbar: React.FC<NavbarProps> = ({ onGetQuote, onLogoClick, onPlansClick, 
 
         {/* Mobile Toggle */}
         <div className="lg:hidden">
-            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="text-white">
+            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className={toggleButtonClass}>
                 {mobileMenuOpen ? <X /> : <Menu />}
             </button>
         </div>

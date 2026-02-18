@@ -43,6 +43,7 @@ const App: React.FC = () => {
         onLogoClick={navigateToHome} 
         onPlansClick={navigateToPlans} 
         onPartnersClick={navigateToPartners}
+        variant={currentPage === 'home' ? 'home' : 'inner'}
       />
       
       {currentPage === 'home' && (
