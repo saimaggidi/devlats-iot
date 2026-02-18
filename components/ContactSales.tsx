@@ -24,7 +24,7 @@ const ContactSales: React.FC = () => {
                         <div>
                             <h4 className="font-bold text-slate-900 text-lg">Sales Inquiries</h4>
                             <p className="text-slate-500 mb-1">For enterprise plans and partnerships.</p>
-                            <a href="mailto:sales@cloudi-fi.com" className="text-brand-600 font-bold hover:underline">sales@cloudi-fi.com</a>
+                            <a href="mailto:sales@devlats.com" className="text-brand-600 font-bold hover:underline">hr@devlats.com</a>
                         </div>
                     </div>
 
@@ -35,8 +35,8 @@ const ContactSales: React.FC = () => {
                         <div>
                             <h4 className="font-bold text-slate-900 text-lg">Global HQ</h4>
                             <p className="text-slate-500">
-                                123 Innovation Drive<br/>
-                                75001 Paris, France
+                                IT Hub, Nizamabad<br/>
+                                Telangana, India - 503001
                             </p>
                         </div>
                     </div>

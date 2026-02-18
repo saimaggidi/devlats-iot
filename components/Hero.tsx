@@ -18,8 +18,8 @@ const Hero: React.FC<HeroProps> = ({ onStartTrial }) => {
   const [text2, setText2] = useState('');
   const [isTyping1, setIsTyping1] = useState(true);
   
-  const line1Full = "The Last Mile of";
-  const line2Full = "Zero Trust";
+  const line1Full = "The Smart Edge of";
+  const line2Full = "Secure Connectivity";
 
   useEffect(() => {
     let timeout: ReturnType<typeof setTimeout>;
@@ -76,7 +76,7 @@ const Hero: React.FC<HeroProps> = ({ onStartTrial }) => {
                     Identity-First Security
                  </div>
 
-                 <h1 className="text-5xl lg:text-7xl font-display font-bold text-white leading-[1.1] tracking-tight min-h-[3.3em] lg:min-h-[2.2em]">
+                 <h1 className="text-5xl lg:text-[3.5rem] font-display font-bold text-white leading-[1.1] tracking-tight min-h-[3.3em] lg:min-h-[2.2em]">
                     {text1}
                     {isTyping1 && <span className="animate-pulse text-brand-400">|</span>}
                     <br/>
@@ -87,8 +87,7 @@ const Hero: React.FC<HeroProps> = ({ onStartTrial }) => {
                  </h1>
 
                  <p className="text-lg text-slate-400 leading-relaxed max-w-xl mx-auto lg:mx-0">
-                    Secure the unmanaged. Cloudi-Fi is the only cloud-native platform that unifies authentication and security for <strong>Guest Wi-Fi</strong>, <strong>BYOD</strong>, and <strong>IoT devices</strong>—without additional hardware.
-                 </p>
+                    DevIats-IoT is a cloud-native platform that unifies authentication, device control, traffic management, and WiFi monetization for <strong>Guest Wi-Fi, BYOD,</strong> and <strong>IoT environments</strong> — without complex infrastructure.</p>
 
                  {/* Action Buttons */}
                  <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-2">

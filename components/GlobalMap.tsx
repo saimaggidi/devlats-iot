@@ -5,7 +5,7 @@ const testimonials = [
   {
     name: "Sarah Chen",
     role: "CTO, CloudScale AI",
-    quote: "The edge observability provided by Cloudi-Fi has reduced our network MTTR by 64% across 400 global locations. The telemetry stream is flawless."
+    quote: "The edge observability provided by Smart Network Gateway has reduced our network MTTR by 64% across 400 global locations. The telemetry stream is flawless."
   },
   {
     name: "Marcus Rodriguez",
@@ -15,12 +15,12 @@ const testimonials = [
   {
     name: "Emily Watson",
     role: "CISO, GlobalFinance",
-    quote: "Compliance was our biggest headache. Cloudi-Fi resolved it instantly with their automated logging and retention features in over 50 countries."
+    quote: "Compliance was our biggest headache. Smart Network Gateway resolved it instantly with their automated logging and retention features in over 50 countries."
   },
   {
     name: "David Park",
     role: "Head of IT, OmniGroup",
-    quote: "We needed a solution that worked for both guests and corporate IoT devices. Cloudi-Fi's unified platform was the only one that delivered."
+    quote: "We needed a solution that worked for both guests and corporate IoT devices. Smart Network Gateway's unified platform was the only one that delivered."
   }
 ];
 

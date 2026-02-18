@@ -5,25 +5,25 @@ const steps = [
   {
     id: 1,
     title: 'Connect',
-    description: 'User selects the "Cloudi-Fi Guest" SSID from their device Wi-Fi settings to initiate the connection.',
+    description: 'User selects the “Public WiFi” SSID from their device WiFi settings to initiate the connection.',
     icon: Wifi
   },
   {
     id: 2,
     title: 'Authenticate',
-    description: 'A branded captive portal automatically appears. Users authenticate via SSO, Social Login, or SMS.',
+    description: 'A secure login page automatically appears. Users verify access via OTP, social login, or credentials.',
     icon: UserCheck
   },
   {
     id: 3,
     title: 'Validate',
-    description: 'Cloudi-Fi performs real-time security posture checks on the device before granting network access.',
+    description: 'The system performs security checks on the device before granting network access.',
     icon: ShieldCheck
   },
   {
     id: 4,
     title: 'Access',
-    description: 'The user is granted secure internet access with applied bandwidth and content filtering policies.',
+    description: 'The user is granted secure internet access with applied bandwidth limits and content filtering policies.',
     icon: Globe
   }
 ];
@@ -135,19 +135,19 @@ const HowItWorks: React.FC = () => {
                            <h4 className="text-lg font-bold text-slate-900">Wi-Fi</h4>
                         </div>
                         <div className="mt-4 px-4 space-y-2">
-                           {['Office_Secure', 'Cloudi-Fi Guest', 'Free_Wifi', 'Starbucks_2'].map((ssid, i) => (
-                             <div key={ssid} className={`p-3 bg-white rounded-xl flex items-center justify-between shadow-sm ${ssid === 'Cloudi-Fi Guest' ? 'border-2 border-brand-500' : ''}`}>
+                           {['Office_Secure', 'Devlats-Free wifi', 'Free_Wifi', 'Starbucks_2'].map((ssid, i) => (
+                             <div key={ssid} className={`p-3 bg-white rounded-xl flex items-center justify-between shadow-sm ${ssid === 'Devlats-Free wifi' ? 'border-2 border-brand-500' : ''}`}>
                                 <div className="flex items-center gap-3">
-                                   <Wifi className={`w-5 h-5 ${ssid === 'Cloudi-Fi Guest' ? 'text-brand-500' : 'text-slate-400'}`} />
-                                   <span className={`font-medium ${ssid === 'Cloudi-Fi Guest' ? 'text-brand-900' : 'text-slate-600'}`}>{ssid}</span>
+                                   <Wifi className={`w-5 h-5 ${ssid === 'Devlats-Free wifi' ? 'text-brand-500' : 'text-slate-400'}`} />
+                                   <span className={`font-medium ${ssid === 'Devlats-Free wifi' ? 'text-brand-900' : 'text-slate-600'}`}>{ssid}</span>
                                 </div>
-                                {ssid === 'Cloudi-Fi Guest' && <div className="w-2 h-2 bg-brand-500 rounded-full animate-pulse"></div>}
+                                {ssid === 'Devlats-Free wifi' && <div className="w-2 h-2 bg-brand-500 rounded-full animate-pulse"></div>}
                              </div>
                            ))}
                         </div>
                         <div className="absolute bottom-10 left-0 w-full px-8 text-center">
                             <div className="bg-slate-800 text-white py-2 rounded-full text-xs shadow-lg animate-bounce">
-                                Tap 'Cloudi-Fi Guest'
+                                Tap 'Devlats-Free wifi'
                             </div>
                         </div>
                       </div>
@@ -185,7 +185,7 @@ const HowItWorks: React.FC = () => {
                                 <ScanLine className="w-10 h-10 text-brand-200 animate-pulse" />
                              </div>
                           </div>
-                          <h3 className="text-white font-bold text-lg mt-8">Checking Device...</h3>
+                          <h3 className="text-white font-bold text-lg mt-8">Verifying...</h3>
                           <div className="space-y-2 mt-4 w-64">
                              <div className="flex items-center gap-2 text-xs text-brand-200">
                                 <CheckCircle2 className="w-3 h-3 text-green-400" /> OS Version Checked
@@ -200,18 +200,33 @@ const HowItWorks: React.FC = () => {
                        </div>
                     )}
 
-                    {/* Screen 4: Success */}
+                    {/* Screen 4: Success (Redesigned) */}
                     {activeStep === 4 && (
-                       <div className="absolute inset-0 bg-green-500 flex flex-col items-center justify-center text-white animate-fade-in">
-                           <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-6 shadow-lg animate-bounce">
-                              <CheckCircle2 className="w-10 h-10 text-green-600" />
+                       <div className="absolute inset-0 bg-slate-50 flex flex-col pt-12 px-6 animate-fade-in">
+                           {/* Top Section: Connected Status */}
+                           <div className="flex flex-col items-center mb-6">
+                               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4 shadow-sm animate-bounce">
+                                  <CheckCircle2 className="w-8 h-8 text-green-600" />
+                               </div>
+                               <h2 className="text-2xl font-bold text-slate-900">Connected!</h2>
+                               <p className="text-slate-500 text-center text-sm px-4">You now have secure access to the internet.</p>
                            </div>
-                           <h2 className="text-2xl font-bold mb-2">Connected!</h2>
-                           <p className="text-green-100 text-center px-8 mb-8">You now have secure access to the internet.</p>
-                           <div className="bg-white/20 backdrop-blur-sm p-4 rounded-xl text-center w-64">
-                              <div className="text-xs uppercase opacity-75 mb-1">Session Time</div>
-                              <div className="font-mono text-xl font-bold">02:00:00</div>
+
+                           {/* Center Section: Ad Poster */}
+                           <div className="flex-1 w-full bg-slate-900 rounded-2xl overflow-hidden relative mb-6 shadow-xl group cursor-pointer border border-slate-200">
+                                <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=600" alt="Ad" className="w-full h-full object-cover opacity-60 group-hover:opacity-50 transition-opacity transform group-hover:scale-105 duration-700" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                                <div className="absolute bottom-0 left-0 p-5 w-full">
+                                    <span className="inline-block bg-brand-500 text-white text-[10px] font-bold px-2 py-0.5 rounded mb-2">OFFER</span>
+                                    <h4 className="text-white font-bold text-lg leading-tight mb-1">Devlats-IoT Premium</h4>
+                                    <p className="text-slate-300 text-xs">Unlock 1Gbps speeds & dedicated support.</p>
+                                </div>
                            </div>
+
+                           {/* Bottom Section: Browse Button */}
+                           <button className="w-full py-4 bg-brand-600 hover:bg-brand-700 text-white rounded-xl font-bold text-sm shadow-lg transition-all mb-8 flex items-center justify-center gap-2 group">
+                              Start Browsing <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                           </button>
                        </div>
                     )}
                   </div>

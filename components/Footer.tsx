@@ -33,7 +33,7 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Middle Section: Links */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 mb-16 border-b border-brand-900 pb-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-16 border-b border-brand-900 pb-16">
           
           {/* Brand Column (Wider) */}
           <div className="col-span-2 lg:col-span-2 space-y-6">
@@ -74,19 +74,10 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
-          <div>
-            <h4 className="text-white font-bold mb-6 text-sm uppercase tracking-wider">Resources</h4>
-            <ul className="space-y-3 text-sm">
-                {['Blog', 'Case Studies', 'Whitepapers', 'Help Center', 'API Docs'].map(item => (
-                    <li key={item}><a href="#" className="hover:text-brand-300 transition-colors block py-1">{item}</a></li>
-                ))}
-            </ul>
-          </div>
-
            <div>
             <h4 className="text-white font-bold mb-6 text-sm uppercase tracking-wider">Legal</h4>
             <ul className="space-y-3 text-sm">
-                {['Privacy Policy', 'Terms of Service', 'Cookie Policy', 'GDPR', 'Trust Center'].map(item => (
+                {['Privacy Policy', 'Terms of Service', 'Cookie Policy'].map(item => (
                     <li key={item}><a href="#" className="hover:text-brand-300 transition-colors block py-1">{item}</a></li>
                 ))}
             </ul>
@@ -95,7 +86,7 @@ const Footer: React.FC = () => {
 
         {/* Bottom Section: Copyright */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
-            <div>&copy; {new Date().getFullYear()} Cloudi-Fi SAS. All rights reserved.</div>
+            <div>&copy; {new Date().getFullYear()} Devlats. All rights reserved.</div>
             <div className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-green-500"></span>
                 System Status: <span className="text-slate-400 hover:text-white cursor-pointer">Operational</span>

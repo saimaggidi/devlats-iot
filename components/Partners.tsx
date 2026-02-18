@@ -6,7 +6,7 @@ const strategicPartners = [
     name: "Microsoft",
     logo: "https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg",
     category: "Identity & Cloud Security",
-    description: "Cloudi-Fi integrates natively with Microsoft Azure Active Directory to streamline user authentication and Microsoft Sentinel for advanced threat telemetry and automated incident response.",
+    description: "Smart Network Gateway integrates natively with Microsoft Azure Active Directory to streamline user authentication and Microsoft Sentinel for advanced threat telemetry and automated incident response.",
     link: "Learn more about Microsoft integration"
   },
   {
@@ -20,7 +20,7 @@ const strategicPartners = [
     name: "Fortinet",
     logo: "https://upload.wikimedia.org/wikipedia/commons/2/23/Fortinet_logo.svg",
     category: "Security Fabric",
-    description: "Leverage your Fortinet Security Fabric to extend protection to unmanaged devices. Cloudi-Fi acts as the identity layer for FortiGate, ensuring compliant internet access.",
+    description: "Leverage your Fortinet Security Fabric to extend protection to unmanaged devices. Smart Network Gateway acts as the identity layer for FortiGate, ensuring compliant internet access.",
     link: "Explore Fortinet Partnership"
   },
   {
@@ -68,7 +68,7 @@ const Partners: React.FC = () => {
                 </h1>
                 
                 <p className="text-slate-400 text-lg lg:text-xl max-w-2xl mx-auto mb-12 leading-relaxed font-light">
-                    Join a global network of innovators. Whether you are an MSP, a reseller, or a technology vendor, Cloudi-Fi unlocks new revenue streams and value for your customers.
+                    Join a global network of innovators. Whether you are an MSP, a reseller, or a technology vendor, Smart Network Gateway unlocks new revenue streams and value for your customers.
                 </p>
                 
                 <div className="flex flex-col sm:flex-row gap-5 justify-center">
@@ -141,7 +141,7 @@ const Partners: React.FC = () => {
                         <h3 className="text-2xl font-bold text-slate-900 mb-2">Service Providers</h3>
                         <div className="text-xs font-bold text-blue-600 uppercase tracking-wider mb-4">For MSPs & ISPs</div>
                         <p className="text-slate-500 mb-8 leading-relaxed">
-                            Embed Cloudi-Fi into your connectivity portfolio. Deliver value-added services like guest Wi-Fi security and compliance logs.
+                            Embed Smart Network Gateway into your connectivity portfolio. Deliver value-added services like guest Wi-Fi security and compliance logs.
                         </p>
                         <div className="space-y-3 pt-6 border-t border-slate-100">
                              <div className="flex items-center gap-3 text-sm text-slate-700">
@@ -193,7 +193,7 @@ const Partners: React.FC = () => {
                         <h3 className="text-2xl font-bold text-slate-900 mb-2">Tech Alliance</h3>
                         <div className="text-xs font-bold text-purple-600 uppercase tracking-wider mb-4">For ISVs & OEMs</div>
                         <p className="text-slate-500 mb-8 leading-relaxed">
-                             Integrate your solution with Cloudi-Fi. We partner with SASE vendors, Identity Providers, and Wi-Fi infrastructure leaders.
+                             Integrate your solution with Smart Network Gateway. We partner with SASE vendors, Identity Providers, and Wi-Fi infrastructure leaders.
                         </p>
                         <div className="space-y-3 pt-6 border-t border-slate-100">
                              <div className="flex items-center gap-3 text-sm text-slate-700">
@@ -225,7 +225,7 @@ const Partners: React.FC = () => {
                     Better Together
                 </h2>
                 <p className="text-slate-400 max-w-2xl mx-auto text-lg">
-                    Cloudi-Fi sits at the intersection of Network, Security, and Identity. We integrate natively with the tools you already use.
+                    Smart Network Gateway sits at the intersection of Network, Security, and Identity. We integrate natively with the tools you already use.
                 </p>
             </div>
 
@@ -235,7 +235,7 @@ const Partners: React.FC = () => {
                     <div className="w-32 h-32 rounded-full bg-slate-800 border-4 border-slate-700 flex items-center justify-center shadow-[0_0_50px_rgba(32,98,115,0.3)] relative">
                          <div className="absolute inset-0 rounded-full border border-brand-500/50 animate-ping opacity-20"></div>
                          <div className="text-center">
-                             <div className="font-display font-bold text-white text-xl">CLOUDI-FI</div>
+                             <div className="font-display font-bold text-white text-xl">SMART NETWORK GATEWAY</div>
                              <div className="text-[10px] text-brand-400 tracking-widest uppercase">Platform</div>
                          </div>
                     </div>
@@ -306,7 +306,7 @@ const Partners: React.FC = () => {
             <div className="grid md:grid-cols-2 gap-16 items-center">
                  <div className="space-y-8">
                      <h2 className="text-4xl font-display font-bold text-slate-900">
-                         Why partner with <br/> Cloudi-Fi?
+                         Why partner with <br/> Smart Network Gateway?
                      </h2>
                      <p className="text-slate-600 text-lg leading-relaxed">
                          We provide the technology, support, and resources you need to grow your business and help your customers succeed in the cloud era.
@@ -371,7 +371,7 @@ const Partners: React.FC = () => {
                   Ready to grow your business?
               </h2>
               <p className="text-brand-200 text-xl mb-10 max-w-2xl mx-auto">
-                  Become a Cloudi-Fi partner today and start offering the next generation of Zero Trust Network Access.
+                  Become a Smart Network Gateway partner today and start offering the next generation of Zero Trust Network Access.
               </p>
               <button className="bg-brand-500 hover:bg-brand-400 text-white px-10 py-5 rounded-xl font-bold transition-all shadow-lg hover:shadow-brand-500/30 text-lg">
                   Apply Now

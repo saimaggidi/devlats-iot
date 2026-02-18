@@ -50,14 +50,14 @@ const CompliancePricing: React.FC = () => {
                     Compliance & Privacy
                 </span>
                 <h2 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-6 leading-tight">
-                    Global Regulation <span className="text-brand-600">Ready</span>
+                    Regulation <span className="text-brand-600">Ready</span>
                 </h2>
                 <p className="text-slate-600 mb-8 text-lg leading-relaxed">
-                    Cloudi-Fi ensures your network adheres to local internet regulations in over 100 countries. We handle the complexity of data privacy and logs retention so you don't have to.
+                    Ensure your network meets local internet regulations and internal security policies. Built-in logging and access controls help simplify compliance and data protection.
                 </p>
                 
                 <div className="space-y-4">
-                    {['GDPR Compliant (Europe)', 'LGPD Ready (Brazil)', 'CCPA Ready (USA)', 'ISO 27001 Certified'].map((item, i) => (
+                    {['Data Privacy Support', 'Access Logging & Record Retention', 'Policy-Based Access Control', 'Security Best Practices Aligned'].map((item, i) => (
                         <div key={i} className="flex items-center gap-3">
                              <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center shrink-0">
                                  <Check className="w-3.5 h-3.5 text-green-600" />
