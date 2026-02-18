@@ -1,48 +1,25 @@
-import React, { useState } from 'react';
-import { Check, X, Info, ChevronDown, ArrowRight, ShieldCheck } from 'lucide-react';
+import React from 'react';
+import { Check, X, Info, ChevronDown, ArrowRight, ShieldCheck, ShieldAlert, Shield } from 'lucide-react';
 
-// Define the data structure for features to make rendering cleaner
 interface PlanFeature {
   name: string;
-  desc?: string;
-  essentials: boolean | string;
+  basic: boolean | string;
+  pro: boolean | string;
   enterprise: boolean | string;
-  sp: boolean | string;
 }
 
-interface FeatureCategory {
-  title: string;
-  features: PlanFeature[];
-}
-
-const pricingData: FeatureCategory[] = [
-  {
-    title: "Core Connectivity",
-    features: [
-      { name: "Guest Wi-Fi Portal", desc: "Customizable captive portal", essentials: true, enterprise: true, sp: true },
-      { name: "Email Authentication", desc: "Verify users via email loop", essentials: true, enterprise: true, sp: true },
-      { name: "SSO & Social Login", desc: "Google, Facebook, LinkedIn, SAML, Azure AD", essentials: false, enterprise: true, sp: true },
-      { name: "Global Roaming", desc: "Seamless access across international sites", essentials: false, enterprise: false, sp: true },
-    ]
-  },
-  {
-    title: "Security & Identity",
-    features: [
-      { name: "Zero Trust Policies", desc: "Identity-based firewall rules", essentials: false, enterprise: true, sp: true },
-      { name: "IoT Fingerprinting", desc: "Detect and secure IoT/OT devices", essentials: false, enterprise: true, sp: true },
-      { name: "Threat Prevention", desc: "Botnet and phishing protection", essentials: false, enterprise: true, sp: true },
-      { name: "Compliance Logs", desc: "Data retention for legal compliance", essentials: "30 Days", enterprise: "1 Year", sp: "Custom" },
-    ]
-  },
-  {
-    title: "Management & Support",
-    features: [
-      { name: "Analytics Dashboard", desc: "Real-time visibility", essentials: "Basic", enterprise: "Advanced", sp: "Custom" },
-      { name: "API Access", desc: "Integration with 3rd party tools", essentials: false, enterprise: true, sp: true },
-      { name: "Multi-tenancy", desc: "Manage multiple customers", essentials: false, enterprise: false, sp: true },
-      { name: "Support Level", desc: "Technical assistance", essentials: "Standard", enterprise: "Priority", sp: "24/7 Dedicated" },
-    ]
-  }
+const pricingFeatures: PlanFeature[] = [
+  { name: "Edge Router Setup", basic: true, pro: true, enterprise: true },
+  { name: "Network & Data Control", basic: true, pro: true, enterprise: true },
+  { name: "User Managment", basic: true, pro: true, enterprise: true },
+  { name: "Wireless Access Point Setup", basic: true, pro: true, enterprise: true },
+  { name: "Captive Portal", basic: true, pro: true, enterprise: true },
+  { name: "Firewall Protection", basic: true, pro: true, enterprise: true },
+  { name: "Website Control", basic: false, pro: true, enterprise: true },
+  { name: "Network Monitoring", basic: false, pro: true, enterprise: true },
+  { name: "Load Balancing", basic: false, pro: true, enterprise: true },
+  { name: "Advanced Firewall + VPN", basic: false, pro: false, enterprise: true },
+  { name: "VoIP/Custom Integration", basic: false, pro: false, enterprise: true },
 ];
 
 const Pricing: React.FC = () => {
@@ -70,19 +47,19 @@ const Pricing: React.FC = () => {
             {/* Pricing Cards (Desktop Grid) */}
             <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto mb-24 items-start">
                 
-                {/* Essentials Card */}
+                {/* Basic Plan Card */}
                 <div className="bg-white rounded-3xl border border-slate-200 p-8 shadow-sm hover:shadow-xl transition-all duration-300 relative group">
-                    <h3 className="text-xl font-bold text-slate-900 mb-2">Essentials</h3>
-                    <p className="text-slate-500 text-sm mb-6 h-10">Perfect for small businesses needing basic guest access.</p>
-                    <div className="text-3xl font-display font-bold text-slate-900 mb-6">Custom</div>
+                    <h3 className="text-xl font-bold text-slate-900 mb-2">Basic Plan</h3>
+                    <p className="text-slate-500 text-sm mb-6 h-10">Essential connectivity and security features.</p>
+                    <div className="text-3xl font-display font-bold text-slate-900 mb-6">Starter</div>
                     
                     <button className="w-full py-3 bg-slate-50 border border-slate-200 text-slate-700 rounded-xl font-bold hover:bg-slate-100 hover:border-slate-300 transition-all text-sm mb-8">
                         Get Started
                     </button>
 
                     <div className="space-y-4">
-                         <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">Key Features</div>
-                         {['Guest Wi-Fi Portal', 'Email Authentication', 'Basic Analytics', 'Standard Support'].map((feat, i) => (
+                         <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">Includes</div>
+                         {['Edge Router Setup', 'Captive Portal', 'Firewall Protection'].map((feat, i) => (
                              <div key={i} className="flex items-start gap-3">
                                  <div className="w-5 h-5 rounded-full bg-slate-100 flex items-center justify-center shrink-0 mt-0.5">
                                      <Check className="w-3 h-3 text-slate-600" />
@@ -93,23 +70,23 @@ const Pricing: React.FC = () => {
                     </div>
                 </div>
 
-                {/* Enterprise Card (Highlighted) */}
+                {/* Pro Plan Card (Highlighted) */}
                 <div className="bg-brand-900 rounded-3xl border border-brand-700 p-8 shadow-2xl relative transform lg:-translate-y-4 z-10">
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-brand-400 to-cyan-400 text-brand-950 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest shadow-lg">
-                        Most Popular
+                        Recommended
                     </div>
                     
-                    <h3 className="text-xl font-bold text-white mb-2">Enterprise</h3>
-                    <p className="text-brand-200 text-sm mb-6 h-10">Full Zero Trust security for global multi-site organizations.</p>
-                    <div className="text-3xl font-display font-bold text-white mb-6">Contact Us</div>
+                    <h3 className="text-xl font-bold text-white mb-2">Pro Plan</h3>
+                    <p className="text-brand-200 text-sm mb-6 h-10">Advanced control and monitoring for growing networks.</p>
+                    <div className="text-3xl font-display font-bold text-white mb-6">Professional</div>
                     
                     <button className="w-full py-3 bg-brand-400 hover:bg-brand-300 text-brand-950 rounded-xl font-bold transition-all text-sm mb-8 shadow-lg shadow-brand-500/20 flex items-center justify-center gap-2 group">
-                        Request Demo <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        Start Trial <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </button>
 
                     <div className="space-y-4">
-                         <div className="text-xs font-bold text-brand-400 uppercase tracking-wider mb-4">Everything in Essentials, plus:</div>
-                         {['Zero Trust Policies', 'IoT Fingerprinting', 'Threat Prevention', 'Global Compliance (1 Year)', 'API Access', 'Priority Support'].map((feat, i) => (
+                         <div className="text-xs font-bold text-brand-400 uppercase tracking-wider mb-4">Everything in Basic, plus:</div>
+                         {['Website Control', 'Network Monitoring', 'Load Balancing'].map((feat, i) => (
                              <div key={i} className="flex items-start gap-3">
                                  <div className="w-5 h-5 rounded-full bg-brand-800 flex items-center justify-center shrink-0 mt-0.5">
                                      <Check className="w-3 h-3 text-brand-300" />
@@ -120,24 +97,24 @@ const Pricing: React.FC = () => {
                     </div>
                 </div>
 
-                {/* Service Provider Card */}
-                <div className="bg-white rounded-3xl border border-slate-200 p-8 shadow-sm hover:shadow-xl transition-all duration-300 relative group">
-                    <h3 className="text-xl font-bold text-slate-900 mb-2">Service Provider</h3>
-                    <p className="text-slate-500 text-sm mb-6 h-10">For MSPs and carriers managing multiple tenants.</p>
-                    <div className="text-3xl font-display font-bold text-slate-900 mb-6">Volume</div>
+                {/* Enterprise Card */}
+                <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-3xl border border-amber-200 p-8 shadow-sm hover:shadow-xl transition-all duration-300 relative group">
+                    <h3 className="text-xl font-bold text-slate-900 mb-2">Enterprise</h3>
+                    <p className="text-slate-600 text-sm mb-6 h-10">Full-scale security, VPN, and custom integrations.</p>
+                    <div className="text-3xl font-display font-bold text-amber-600 mb-6">Custom</div>
                     
-                    <button className="w-full py-3 bg-white border-2 border-slate-200 text-slate-700 rounded-xl font-bold hover:border-brand-500 hover:text-brand-600 transition-all text-sm mb-8">
+                    <button className="w-full py-3 bg-white border-2 border-amber-200 text-amber-700 rounded-xl font-bold hover:border-amber-400 hover:text-amber-800 transition-all text-sm mb-8">
                         Contact Sales
                     </button>
 
                     <div className="space-y-4">
-                         <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">Everything in Enterprise, plus:</div>
-                         {['Multi-tenancy Management', 'Global Roaming', 'Custom Retention', '24/7 Dedicated Support', 'White-label Options'].map((feat, i) => (
+                         <div className="text-xs font-bold text-amber-500 uppercase tracking-wider mb-4">Everything in Pro, plus:</div>
+                         {['Advanced Firewall + VPN', 'VoIP Integration', 'Custom Deployment', '24/7 Priority Support'].map((feat, i) => (
                              <div key={i} className="flex items-start gap-3">
-                                 <div className="w-5 h-5 rounded-full bg-slate-100 flex items-center justify-center shrink-0 mt-0.5">
-                                     <Check className="w-3 h-3 text-slate-600" />
+                                 <div className="w-5 h-5 rounded-full bg-amber-100 flex items-center justify-center shrink-0 mt-0.5">
+                                     <Check className="w-3 h-3 text-amber-600" />
                                  </div>
-                                 <span className="text-slate-600 text-sm font-medium">{feat}</span>
+                                 <span className="text-slate-700 text-sm font-medium">{feat}</span>
                              </div>
                          ))}
                     </div>
@@ -146,60 +123,43 @@ const Pricing: React.FC = () => {
 
             {/* Detailed Comparison Table */}
             <div className="max-w-6xl mx-auto">
-                <div className="text-center mb-12">
-                     <h3 className="text-2xl font-bold text-slate-900">Detailed Feature Comparison</h3>
-                </div>
-
                 <div className="bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden">
                     <div className="overflow-x-auto hide-scrollbar">
                         <table className="w-full min-w-[800px]">
                             <thead>
-                                <tr className="bg-slate-50 border-b border-slate-200">
-                                    <th className="p-6 text-left w-1/3 text-xs font-bold text-slate-500 uppercase tracking-wider">Features</th>
-                                    <th className="p-6 text-center w-1/5 text-slate-900 font-bold">Essentials</th>
-                                    <th className="p-6 text-center w-1/5 text-brand-700 font-bold bg-brand-50/50">Enterprise</th>
-                                    <th className="p-6 text-center w-1/5 text-slate-900 font-bold">Service Provider</th>
+                                <tr className="bg-slate-900 text-white border-b border-slate-800">
+                                    <th className="p-6 text-left w-1/3 text-sm font-bold uppercase tracking-wider">Features Details</th>
+                                    <th className="p-6 text-center w-1/5 text-sm font-bold uppercase tracking-wider bg-slate-800/50">Basic Plan</th>
+                                    <th className="p-6 text-center w-1/5 text-sm font-bold uppercase tracking-wider bg-brand-900">Pro Plan</th>
+                                    <th className="p-6 text-center w-1/5 text-sm font-bold uppercase tracking-wider bg-amber-900/40 text-amber-200">Enterprise - Get Quote</th>
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-slate-100">
-                                {pricingData.map((category, catIdx) => (
-                                    <React.Fragment key={catIdx}>
-                                        <tr className="bg-slate-50/50">
-                                            <td colSpan={4} className="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">
-                                                {category.title}
-                                            </td>
-                                        </tr>
-                                        {category.features.map((feat, featIdx) => (
-                                            <tr key={featIdx} className="hover:bg-slate-50 transition-colors group">
-                                                <td className="px-6 py-4">
-                                                    <div className="font-medium text-slate-700 flex items-center gap-2">
-                                                        {feat.name}
-                                                        {feat.desc && (
-                                                             <div className="group/tooltip relative">
-                                                                <Info className="w-3.5 h-3.5 text-slate-300 hover:text-brand-500 cursor-help transition-colors" />
-                                                                <div className="absolute left-full top-1/2 -translate-y-1/2 ml-3 w-56 p-2.5 bg-slate-800 text-white text-xs rounded-lg opacity-0 group-hover/tooltip:opacity-100 pointer-events-none transition-all z-50 shadow-xl">
-                                                                    <div className="absolute -left-1 top-1/2 -translate-y-1/2 w-2 h-2 bg-slate-800 rotate-45"></div>
-                                                                    {feat.desc}
-                                                                </div>
-                                                             </div>
-                                                        )}
-                                                    </div>
-                                                </td>
-                                                <td className="px-6 py-4 text-center">
-                                                    <FeatureValue value={feat.essentials} />
-                                                </td>
-                                                <td className="px-6 py-4 text-center bg-brand-50/30">
-                                                    <FeatureValue value={feat.enterprise} highlight />
-                                                </td>
-                                                <td className="px-6 py-4 text-center">
-                                                    <FeatureValue value={feat.sp} />
-                                                </td>
-                                            </tr>
-                                        ))}
-                                    </React.Fragment>
+                                {pricingFeatures.map((feat, featIdx) => (
+                                    <tr key={featIdx} className="hover:bg-slate-50 transition-colors group">
+                                        <td className="px-6 py-4">
+                                            <div className="font-bold text-slate-700 flex items-center gap-2">
+                                                {feat.name}
+                                            </div>
+                                        </td>
+                                        <td className="px-6 py-4 text-center bg-slate-50/30">
+                                            <FeatureValue value={feat.basic} variant="blue" />
+                                        </td>
+                                        <td className="px-6 py-4 text-center bg-brand-50/10">
+                                            <FeatureValue value={feat.pro} variant="blue" />
+                                        </td>
+                                        <td className="px-6 py-4 text-center bg-amber-50/30">
+                                            <FeatureValue value={feat.enterprise} variant="gold" />
+                                        </td>
+                                    </tr>
                                 ))}
                             </tbody>
                         </table>
+                    </div>
+                    {/* Footer Note */}
+                    <div className="bg-slate-100 p-4 border-t border-slate-200 text-sm text-slate-600 flex items-center justify-center gap-2">
+                         <Info className="w-4 h-4 text-brand-600" />
+                         <span>We provide software only, hardware is not included in the above charges.</span>
                     </div>
                 </div>
             </div>
@@ -208,20 +168,42 @@ const Pricing: React.FC = () => {
   );
 };
 
-const FeatureValue = ({ value, highlight = false }: { value: boolean | string, highlight?: boolean }) => {
+const FeatureValue = ({ value, variant = 'blue' }: { value: boolean | string, variant?: 'blue' | 'gold' }) => {
     if (typeof value === 'string') {
-        return <span className={`text-sm font-bold ${highlight ? 'text-brand-700' : 'text-slate-700'}`}>{value}</span>;
+        return <span className="text-sm font-bold text-slate-700">{value}</span>;
     }
     
     if (value === true) {
+        if (variant === 'gold') {
+             return (
+                <div className="flex justify-center">
+                    <div className="relative">
+                        <Shield className="w-6 h-6 text-amber-500 fill-amber-100" />
+                        <Check className="w-3 h-3 text-amber-700 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+                    </div>
+                </div>
+            );
+        }
+        // Blue Variant
         return (
-            <div className={`w-8 h-8 rounded-full flex items-center justify-center mx-auto ${highlight ? 'bg-brand-500 text-white shadow-md shadow-brand-500/30' : 'bg-slate-100 text-slate-500'}`}>
-                <Check className="w-5 h-5" />
+            <div className="flex justify-center">
+                <div className="relative">
+                    <Shield className="w-6 h-6 text-brand-500 fill-brand-50" />
+                    <Check className="w-3 h-3 text-brand-700 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+                </div>
             </div>
         );
     }
 
-    return <div className="w-1.5 h-1.5 rounded-full bg-slate-200 mx-auto"></div>; // Clean dot for negative
+    // False / X
+    return (
+         <div className="flex justify-center">
+            <div className="relative">
+                <Shield className="w-6 h-6 text-slate-200 fill-slate-50" />
+                <X className="w-3 h-3 text-red-400 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+            </div>
+        </div>
+    );
 };
 
 export default Pricing;

@@ -30,9 +30,17 @@ const steps = [
 
 const HowItWorks: React.FC = () => {
   const [activeStep, setActiveStep] = useState(1);
+  const [isPaused, setIsPaused] = useState(false);
 
-  // Optional: Auto-rotate steps if user hasn't interacted? 
-  // Keeping it manual for better UX control as per "Live Preview" request.
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (!isPaused) {
+        setActiveStep((prev) => (prev === steps.length ? 1 : prev + 1));
+      }
+    }, 4000); // Change step every 4 seconds
+
+    return () => clearInterval(interval);
+  }, [isPaused]);
 
   return (
     <section className="py-24 bg-white relative overflow-hidden">
@@ -47,32 +55,49 @@ const HowItWorks: React.FC = () => {
 
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Side: Interactive Steps */}
-          <div className="space-y-6">
+          <div 
+            className="space-y-6"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+          >
             {steps.map((step) => (
               <div 
                 key={step.id}
                 onClick={() => setActiveStep(step.id)}
-                className={`cursor-pointer p-6 rounded-2xl transition-all duration-300 border-2 ${
+                className={`cursor-pointer p-6 rounded-2xl transition-all duration-500 border-2 relative overflow-hidden ${
                   activeStep === step.id 
                     ? 'bg-brand-50 border-brand-500 shadow-lg scale-[1.02]' 
                     : 'bg-white border-slate-100 hover:border-brand-200 hover:bg-slate-50'
                 }`}
               >
-                <div className="flex items-start gap-4">
-                  <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 transition-colors ${
+                {/* Progress Bar Background for Active Step */}
+                {activeStep === step.id && !isPaused && (
+                   <div className="absolute bottom-0 left-0 h-1 bg-brand-200 w-full">
+                      <div className="h-full bg-brand-500 animate-[progress_4s_linear_infinite] origin-left"></div>
+                   </div>
+                )}
+                <style>{`
+                  @keyframes progress {
+                    0% { width: 0%; }
+                    100% { width: 100%; }
+                  }
+                `}</style>
+
+                <div className="flex items-start gap-4 relative z-10">
+                  <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 transition-colors duration-300 ${
                     activeStep === step.id ? 'bg-brand-500 text-white' : 'bg-slate-100 text-slate-400'
                   }`}>
                     <step.icon className="w-6 h-6" />
                   </div>
                   <div>
-                    <h3 className={`text-xl font-bold mb-2 ${activeStep === step.id ? 'text-brand-900' : 'text-slate-700'}`}>
+                    <h3 className={`text-xl font-bold mb-2 transition-colors ${activeStep === step.id ? 'text-brand-900' : 'text-slate-700'}`}>
                       {step.title}
                     </h3>
                     <p className="text-slate-500 text-sm leading-relaxed">
                       {step.description}
                     </p>
                   </div>
-                  <div className={`ml-auto self-center ${activeStep === step.id ? 'opacity-100 text-brand-500' : 'opacity-0'}`}>
+                  <div className={`ml-auto self-center transition-opacity duration-300 ${activeStep === step.id ? 'opacity-100 text-brand-500' : 'opacity-0'}`}>
                     <ChevronRight className="w-6 h-6" />
                   </div>
                 </div>

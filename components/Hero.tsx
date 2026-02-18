@@ -7,6 +7,7 @@ interface HeroProps {
 
 const clientLogos = [
   { name: 'Microsoft', url: 'https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg', h: 'h-6 md:h-7' },
+  // Hotel Kapila Logo (Green fill)
   { name: 'Hotel Kapila', url: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgNjAiPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQnJ1c2ggU2NyaXB0IE1ULCBjdXJzaXZlIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1zaXplPSIzMiIgZmlsbD0iIzJFN0QzMiI+SG90ZWwgS2FwaWxhPC90ZXh0Pjwvc3ZnPg==', h: 'h-10 md:h-12' },
   { name: 'Accenture', url: 'https://upload.wikimedia.org/wikipedia/commons/c/cd/Accenture.svg', h: 'h-6 md:h-8' },
   { name: 'McDonalds', url: 'https://upload.wikimedia.org/wikipedia/commons/3/36/McDonald%27s_Golden_Arches.svg', h: 'h-8 md:h-10' }
@@ -214,11 +215,11 @@ const Hero: React.FC<HeroProps> = ({ onStartTrial }) => {
             <p className="text-center text-slate-500 text-sm font-semibold mb-8 uppercase tracking-widest">Trusted by global industry leaders</p>
             <div className="flex flex-wrap justify-center items-center gap-6 lg:gap-8">
                  {clientLogos.map((logo, i) => (
-                     <div key={i} className="bg-white p-4 rounded-xl shadow-sm flex items-center justify-center min-w-[120px] sm:min-w-[140px]">
+                     <div key={i} className="bg-white p-4 rounded-xl shadow-sm flex items-center justify-center w-[160px] h-[90px]">
                         <img 
                             src={logo.url} 
                             alt={logo.name} 
-                            className={`${logo.h} w-auto object-contain`} 
+                            className={`${logo.h} w-auto object-contain max-w-full max-h-full`} 
                         />
                      </div>
                  ))}
