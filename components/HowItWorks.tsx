@@ -178,10 +178,10 @@ const HowItWorks: React.FC = () => {
                     {/* Screen 2: Captive Portal */}
                     {activeStep === 2 && (
                        <div className="absolute inset-0 bg-white flex flex-col items-center justify-center px-6 animate-fade-in">
-                          <div className="w-16 h-16 bg-brand-500 rounded-2xl flex items-center justify-center mb-6 shadow-xl rotate-12">
+                          <div className="w-16 h-16 bg-brand-500 rounded-2xl flex items-center justify-center mb-6 shadow-xl ">
                              <Wifi className="w-8 h-8 text-white" />
                           </div>
-                          <h2 className="text-xl font-bold text-slate-900 mb-2 text-center">Welcome To <br />Devlats-IoT</h2>
+                          <h2 className="text-[1.2rem] font-bold text-slate-900 mb-2 text-center">Welcome To Devlats-IoT</h2>
                           <p className="text-slate-500 text-center text-sm mb-10">Sign in to access the Guest Network</p>
                           
                           <div className="w-full space-y-4">
@@ -192,9 +192,6 @@ const HowItWorks: React.FC = () => {
                                 <Wifi className="w-3 h-3 text-brand-500" />
                                 <span>Secure and fast WiFi for you</span>
                              </div>
-                          </div>
-                          <div className="mt-8 text-xs text-slate-400 text-center">
-                             Powered by Devlats-IoT
                           </div>
                        </div>
                     )}
