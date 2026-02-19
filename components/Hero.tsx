@@ -76,7 +76,7 @@ const Hero: React.FC<HeroProps> = ({ onStartTrial }) => {
                     Identity-First Security
                  </div>
 
-                 <h1 className="text-5xl md:text-[2rem] lg:text-[3.5rem] font-display font-bold text-white leading-[1.1] tracking-tight lg:min-h-[2.2em]">
+                 <h1 className="text-5xl md:text-[2rem] md:text-[2rem] lg:text-[3.5rem] font-display font-bold text-white leading-[1.1] tracking-tight lg:min-h-[2.2em]">
                     {text1}
                     {isTyping1 && <span className="animate-pulse text-brand-400">|</span>}
                     <br/>
