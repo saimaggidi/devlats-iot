@@ -1,29 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import { Wifi, UserCheck, ShieldCheck, Globe, Signal, Battery, Lock, CheckCircle2, ChevronRight, ScanLine } from 'lucide-react';
+import { Wifi, UserCheck, ShieldCheck, Globe, Signal, Battery, Lock, CheckCircle2, ChevronRight, ScanLine, Loader2, Zap, X, QrCode } from 'lucide-react';
 
 const steps = [
   {
     id: 1,
-    title: 'Connect',
-    description: 'User selects the “Public WiFi” SSID from their device WiFi settings to initiate the connection.',
-    icon: Wifi
+    title: 'Scan to Connect',
+    description: 'Users can join by selecting the Free WiFi network or scanning a QR code. They are either redirected directly to browse or prompted to verify through a captive portal.',
+    icon: QrCode
   },
   {
     id: 2,
     title: 'Authenticate',
-    description: 'A secure login page appears automatically. Users verify access using a one-time password (OTP) sent via SMS or email.',
+    description: 'A branded captive portal automatically appears. Users authenticate via SSO, Social Login, or SMS.',
     icon: UserCheck
   },
   {
     id: 3,
     title: 'Validate',
-    description: 'The system performs security checks on the device before granting network access.',
+    description: 'Cloudi-Fi performs real-time security posture checks on the device before granting network access.',
     icon: ShieldCheck
   },
   {
     id: 4,
     title: 'Access',
-    description: 'The user is granted secure internet access with applied bandwidth limits and content filtering policies.',
+    description: 'The user is granted secure internet access with applied bandwidth and content filtering policies.',
     icon: Globe
   }
 ];
@@ -103,7 +103,7 @@ const HowItWorks: React.FC = () => {
                <div className="w-full h-full bg-slate-50 rounded-[2.2rem] overflow-hidden relative flex flex-col">
                   
                   {/* Status Bar */}
-                  <div className="h-8 bg-slate-900 text-white flex justify-between items-center px-6 text-[10px] font-medium z-20">
+                  <div className="h-8 bg-slate-900 text-white flex justify-between items-center px-6 text-[10px] font-medium z-20 absolute top-0 left-0 w-full">
                     <span>9:41</span>
                     <div className="flex items-center gap-1.5">
                        <Signal className="w-3 h-3" />
@@ -113,30 +113,65 @@ const HowItWorks: React.FC = () => {
                   </div>
 
                   {/* Dynamic Screen Content */}
-                  <div className="flex-1 relative">
+                  <div className="flex-1 relative mt-0 h-full">
                     
-                    {/* Screen 1: Wi-Fi List */}
+                    {/* Screen 1: QR Code Scanner (Camera View) */}
                     {activeStep === 1 && (
-                      <div className="absolute inset-0 bg-slate-100 animate-fade-in">
-                        <div className="bg-white p-4 pb-2 shadow-sm z-10">
-                           <h4 className="text-lg font-bold text-slate-900">Wi-Fi</h4>
+                      <div className="absolute inset-0 bg-slate-950 flex flex-col overflow-hidden animate-fade-in">
+                        {/* Camera Header */}
+                        <div className="absolute top-0 left-0 w-full p-6 pt-12 flex justify-between items-center z-20 bg-gradient-to-b from-black/80 to-transparent">
+                            <X className="w-5 h-5 text-white/80" />
+                            <div className="px-3 py-1 bg-black/40 backdrop-blur rounded-full text-xs font-medium text-white border border-white/10">
+                                Scan QR Code
+                            </div>
+                            <Zap className="w-5 h-5 text-white/80" />
                         </div>
-                        <div className="mt-4 px-4 space-y-2">
-                           {['Office_Secure', 'Devlats-Free wifi', 'Free_Wifi', 'Starbucks_2'].map((ssid, i) => (
-                             <div key={ssid} className={`p-3 bg-white rounded-xl flex items-center justify-between shadow-sm ${ssid === 'Devlats-Free wifi' ? 'border-2 border-brand-500' : ''}`}>
-                                <div className="flex items-center gap-3">
-                                   <Wifi className={`w-5 h-5 ${ssid === 'Devlats-Free wifi' ? 'text-brand-500' : 'text-slate-400'}`} />
-                                   <span className={`font-medium ${ssid === 'Devlats-Free wifi' ? 'text-brand-900' : 'text-slate-600'}`}>{ssid}</span>
+
+                        {/* Camera Feed Simulation */}
+                        <img 
+                            src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=600" 
+                            className="absolute inset-0 w-full h-full object-cover opacity-30 grayscale mix-blend-overlay" 
+                            alt="Camera Feed" 
+                        />
+                        
+                        {/* Scanning UI - Centered Absolutely */}
+                        <div className="absolute inset-0 flex flex-col items-center justify-center z-10 pointer-events-none">
+                            <div className="relative w-64 h-64">
+                                {/* Corners */}
+                                <div className="absolute top-0 left-0 w-8 h-8 border-t-4 border-l-4 border-brand-500 rounded-tl-2xl drop-shadow-[0_0_10px_rgba(32,98,115,0.8)]"></div>
+                                <div className="absolute top-0 right-0 w-8 h-8 border-t-4 border-r-4 border-brand-500 rounded-tr-2xl drop-shadow-[0_0_10px_rgba(32,98,115,0.8)]"></div>
+                                <div className="absolute bottom-0 left-0 w-8 h-8 border-b-4 border-l-4 border-brand-500 rounded-bl-2xl drop-shadow-[0_0_10px_rgba(32,98,115,0.8)]"></div>
+                                <div className="absolute bottom-0 right-0 w-8 h-8 border-b-4 border-r-4 border-brand-500 rounded-br-2xl drop-shadow-[0_0_10px_rgba(32,98,115,0.8)]"></div>
+
+                                {/* QR Code */}
+                                <div className="absolute inset-4 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center border border-white/10">
+                                     <QrCode className="w-40 h-40 text-white/80 opacity-50" />
                                 </div>
-                                {ssid === 'Devlats-Free wifi' && <div className="w-2 h-2 bg-brand-500 rounded-full animate-pulse"></div>}
-                             </div>
-                           ))}
-                        </div>
-                        <div className="absolute bottom-10 left-0 w-full px-8 text-center">
-                            <div className="bg-slate-800 text-white py-2 rounded-full text-xs shadow-lg animate-bounce">
-                                Tap 'Devlats-Free wifi'
+
+                                {/* Laser Line */}
+                                <div className="absolute left-0 right-0 h-1 bg-brand-400 shadow-[0_0_20px_rgba(32,226,255,1)] animate-[scan_2s_ease-in-out_infinite] z-20"></div>
+                            </div>
+                            
+                            <div className="mt-8 text-white font-mono text-xs tracking-widest animate-pulse">
+                                DETECTING NETWORK...
                             </div>
                         </div>
+
+                        {/* Camera Controls */}
+                        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-black/90 to-transparent z-20 flex items-center justify-center pb-8">
+                             <div className="w-16 h-16 rounded-full border-4 border-white/30 flex items-center justify-center">
+                                 <div className="w-12 h-12 bg-white rounded-full"></div>
+                             </div>
+                        </div>
+
+                        <style>{`
+                            @keyframes scan {
+                                0% { top: 0%; opacity: 0; }
+                                10% { opacity: 1; }
+                                90% { opacity: 1; }
+                                100% { top: 100%; opacity: 0; }
+                            }
+                        `}</style>
                       </div>
                     )}
 
@@ -187,7 +222,7 @@ const HowItWorks: React.FC = () => {
                        </div>
                     )}
 
-                    {/* Screen 4: Success (Redesigned) */}
+                    {/* Screen 4: Success */}
                     {activeStep === 4 && (
                        <div className="absolute inset-0 bg-slate-50 flex flex-col pt-12 px-6 animate-fade-in">
                            {/* Top Section: Connected Status */}
