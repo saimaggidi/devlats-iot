@@ -4,8 +4,8 @@ import { Wifi, UserCheck, ShieldCheck, Globe, Signal, Battery, Lock, CheckCircle
 const steps = [
   {
     id: 1,
-    title: 'Scan to Connect',
-    description: 'Users can join by selecting the Free WiFi network or scanning a QR code. They are either redirected directly to browse or prompted to verify through a captive portal.',
+    title: 'Connect',
+    description: 'Users access the network by selecting the Free WiFi SSID or scanning the QR code.They are either connected instantly or redirected to a secure verification page.',
     icon: QrCode
   },
   {
