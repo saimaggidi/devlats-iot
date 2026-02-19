@@ -11,7 +11,7 @@ const steps = [
   {
     id: 2,
     title: 'Authenticate',
-    description: 'A secure login page automatically appears. Users verify access via OTP, social login, or credentials.',
+    description: 'A secure login page appears automatically. Users verify access using a one-time password (OTP) sent via SMS or email.',
     icon: UserCheck
   },
   {
@@ -70,19 +70,6 @@ const HowItWorks: React.FC = () => {
                     : 'bg-white border-slate-100 hover:border-brand-200 hover:bg-slate-50'
                 }`}
               >
-                {/* Progress Bar Background for Active Step */}
-                {activeStep === step.id && !isPaused && (
-                   <div className="absolute bottom-0 left-0 h-1 bg-brand-200 w-full">
-                      <div className="h-full bg-brand-500 animate-[progress_4s_linear_infinite] origin-left"></div>
-                   </div>
-                )}
-                <style>{`
-                  @keyframes progress {
-                    0% { width: 0%; }
-                    100% { width: 100%; }
-                  }
-                `}</style>
-
                 <div className="flex items-start gap-4 relative z-10">
                   <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 transition-colors duration-300 ${
                     activeStep === step.id ? 'bg-brand-500 text-white' : 'bg-slate-100 text-slate-400'

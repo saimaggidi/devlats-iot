@@ -41,27 +41,31 @@ const Navbar: React.FC<NavbarProps> = ({
   };
 
   // Determine styles based on variant and scroll state
-  // Dark State = Scrolled OR Mobile Menu Open OR Home Variant (Initial)
-  // Actually, Home Variant Initial is Transparent (with white text). 
-  // Let's separate Background and Text Logic.
   
   // Background Logic
-  const navBackgroundClass = (isScrolled || mobileMenuOpen)
-    ? 'bg-brand-950/90 backdrop-blur-md shadow-lg border-b border-brand-800 py-3' // Scrolled State (Always Dark)
-    : variant === 'home'
-        ? 'bg-transparent py-5' // Home Initial (Transparent)
-        : 'bg-white/90 backdrop-blur-md shadow-sm border-b border-slate-200 py-4'; // Inner Initial (White)
+  const navBackgroundClass = (() => {
+    if (mobileMenuOpen) {
+      return 'bg-brand-950/90 backdrop-blur-md shadow-lg border-b border-brand-800 py-3';
+    }
+    if (isScrolled) {
+      return 'bg-white/90 backdrop-blur-md shadow-lg border-b border-slate-200 py-3';
+    }
+    if (variant === 'home') {
+      return 'bg-transparent py-5';
+    }
+    return 'bg-white/90 backdrop-blur-md shadow-sm border-b border-slate-200 py-4';
+  })();
 
   // Text/Content Logic
-  // We want White Text if: Scrolled OR Mobile Open OR Home Variant (Initial)
-  // We want Dark Text if: Inner Variant (Initial) AND Not Scrolled AND Not Mobile Open
-  const isDarkContent = isScrolled || mobileMenuOpen || variant === 'home';
+  // We want Light Text (white/slate-300) if background is Dark.
+  // Background is dark if: Mobile Menu Open OR (Home Variant AND Not Scrolled)
+  const isLightText = mobileMenuOpen || (variant === 'home' && !isScrolled);
 
-  const textColorClass = isDarkContent ? 'text-slate-300' : 'text-slate-600';
-  const hoverColorClass = isDarkContent ? 'hover:text-white' : 'hover:text-brand-600';
-  const logoTextClass = isDarkContent ? 'text-white' : 'text-brand-950';
-  const toggleButtonClass = isDarkContent ? 'text-white' : 'text-slate-900';
-  const logoBoxClass = isDarkContent ? 'bg-brand-500' : 'bg-brand-600';
+  const textColorClass = isLightText ? 'text-slate-300' : 'text-slate-600';
+  const hoverColorClass = isLightText ? 'hover:text-white' : 'hover:text-brand-600';
+  const logoTextClass = isLightText ? 'text-white' : 'text-brand-950';
+  const toggleButtonClass = isLightText ? 'text-white' : 'text-slate-900';
+  const logoBoxClass = isLightText ? 'bg-brand-500' : 'bg-brand-600';
 
   return (
     <nav

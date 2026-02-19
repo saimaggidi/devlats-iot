@@ -5,7 +5,7 @@ const testimonials = [
   {
     name: "Sarah Chen",
     role: "CTO, CloudScale AI",
-    quote: "The edge observability provided by Smart Network Gateway has reduced our network MTTR by 64% across 400 global locations. The telemetry stream is flawless."
+    quote: "The edge observability provided by Cloudi-Fi has reduced our network MTTR by 64% across 400 global locations. The telemetry stream is flawless."
   },
   {
     name: "Marcus Rodriguez",
@@ -15,12 +15,12 @@ const testimonials = [
   {
     name: "Emily Watson",
     role: "CISO, GlobalFinance",
-    quote: "Compliance was our biggest headache. Smart Network Gateway resolved it instantly with their automated logging and retention features in over 50 countries."
+    quote: "Compliance was our biggest headache. Cloudi-Fi resolved it instantly with their automated logging and retention features in over 50 countries."
   },
   {
     name: "David Park",
     role: "Head of IT, OmniGroup",
-    quote: "We needed a solution that worked for both guests and corporate IoT devices. Smart Network Gateway's unified platform was the only one that delivered."
+    quote: "We needed a solution that worked for both guests and corporate IoT devices. Cloudi-Fi's unified platform was the only one that delivered."
   }
 ];
 
@@ -102,23 +102,23 @@ const GlobalMap: React.FC = () => {
                                 
                                 {/* Outer Ring 1 */}
                                 <div 
-                                    className="absolute -inset-4 border border-brand-400/30 rounded-full animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite]"
+                                    className="absolute -inset-6 border border-brand-400/30 rounded-full animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite]"
                                     style={{ animationDelay: loc.delay }}
                                 ></div>
                                 {/* Outer Ring 2 */}
                                 <div 
-                                    className="absolute -inset-8 border border-brand-500/10 rounded-full animate-[ping_3s_cubic-bezier(0,0,0.2,1)_infinite]"
+                                    className="absolute -inset-12 border border-brand-500/10 rounded-full animate-[ping_3s_cubic-bezier(0,0,0.2,1)_infinite]"
                                     style={{ animationDelay: loc.delay }}
                                 ></div>
 
                                 {/* Core Icon */}
-                                <div className="relative z-10 w-8 h-8 bg-brand-600 border-2 border-brand-300 rounded-lg transform rotate-45 flex items-center justify-center shadow-[0_0_15px_rgba(32,226,255,0.6)] hover:scale-110 transition-transform">
-                                    <loc.icon className="w-4 h-4 text-white transform -rotate-45" />
+                                <div className="relative z-10 w-12 h-12 bg-brand-600 border-2 border-brand-300 rounded-lg transform rotate-45 flex items-center justify-center shadow-[0_0_15px_rgba(32,226,255,0.6)] hover:scale-110 transition-transform">
+                                    <loc.icon className="w-6 h-6 text-white transform -rotate-45" />
                                 </div>
                             </div>
 
                             {/* Label Tag (Game Style) */}
-                            <div className="absolute mt-12 bg-black/80 backdrop-blur border-l-2 border-brand-500 text-white text-[10px] font-mono px-2 py-1 rounded-r opacity-0 group-hover/pin:opacity-100 transition-opacity whitespace-nowrap z-20">
+                            <div className="absolute mt-16 bg-black/80 backdrop-blur border-l-2 border-brand-500 text-white text-[10px] font-mono px-2 py-1 rounded-r opacity-0 group-hover/pin:opacity-100 transition-opacity whitespace-nowrap z-20">
                                 <span className="text-brand-400 font-bold">LOC:</span> {loc.label}
                             </div>
                          </div>
