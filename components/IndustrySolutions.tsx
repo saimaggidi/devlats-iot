@@ -82,10 +82,10 @@ const IndustrySolutions: React.FC = () => {
                 Tailored Solutions
             </span>
             <h2 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-6">
-                Built for <span className="text-brand-600">Every Sector</span>
+                Built for Modern<span className="text-brand-600">Network Environments</span>
             </h2>
             <p className="text-slate-600 text-lg">
-                Our platform is industry-agnostic by design. Select your sector to see how we address your specific challenges.
+                Flexible, secure connectivity solutions tailored to real-world business needs.
             </p>
          </div>
 

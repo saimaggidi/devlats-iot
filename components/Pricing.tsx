@@ -156,11 +156,6 @@ const Pricing: React.FC = () => {
                             </tbody>
                         </table>
                     </div>
-                    {/* Footer Note */}
-                    <div className="bg-slate-100 p-4 border-t border-slate-200 text-sm text-slate-600 flex items-center justify-center gap-2">
-                         <Info className="w-4 h-4 text-brand-600" />
-                         <span>We provide software only, hardware is not included in the above charges.</span>
-                    </div>
                 </div>
             </div>
         </div>
