@@ -90,7 +90,7 @@ const IndustrySolutions: React.FC = () => {
          </div>
 
          <div 
-            className="flex flex-col lg:flex-row-reverse gap-8 lg:gap-12"
+            className="flex flex-col lg:flex-row gap-8 lg:gap-12"
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
          >
@@ -111,7 +111,7 @@ const IndustrySolutions: React.FC = () => {
                        <div className="flex items-center gap-4">
                            <div className={`
                                w-12 h-12 rounded-xl flex items-center justify-center transition-colors shrink-0
-                               ${activeTab === idx ? 'bg-brand-700 text-white' : 'bg-slate-100 text-slate-400 group-hover:bg-brand-100 group-hover:text-brand-600'}
+                               ${activeTab === idx ? 'bg-brand-700 text-white' : 'bg-slate-100 text-slate-600 group-hover:bg-brand-100 group-hover:text-brand-600'}
                            `}>
                                <item.icon className="w-6 h-6" />
                            </div>

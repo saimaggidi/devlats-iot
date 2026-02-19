@@ -72,7 +72,7 @@ const HowItWorks: React.FC = () => {
               >
                 <div className="flex items-start gap-4 relative z-10">
                   <div className={`w-12 h-12 rounded-full flex items-center justify-center shrink-0 transition-colors duration-300 ${
-                    activeStep === step.id ? 'bg-brand-500 text-white' : 'bg-slate-100 text-slate-400'
+                    activeStep === step.id ? 'bg-brand-500 text-white' : 'bg-slate-100 text-slate-600'
                   }`}>
                     <step.icon className="w-6 h-6" />
                   </div>
