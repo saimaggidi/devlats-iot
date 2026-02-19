@@ -49,7 +49,7 @@ const features: FeatureItem[] = [
 
 const Features: React.FC = () => {
   return (
-    <section className="py-24 bg-slate-50 relative">
+    <section id="solution" className="py-24 bg-slate-50 relative">
       <div className="container mx-auto px-6">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-brand-600 font-bold tracking-wide uppercase text-sm mb-3">Platform Features</h2>

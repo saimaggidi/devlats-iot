@@ -73,7 +73,7 @@ const IndustrySolutions: React.FC = () => {
   }, [isPaused, activeTab]);
 
   return (
-    <section className="py-24 bg-slate-50 font-sans" id="industries">
+    <section id="platform" className="py-24 bg-slate-50 font-sans">
       <div className="container mx-auto px-6">
          
          {/* Header Section */}

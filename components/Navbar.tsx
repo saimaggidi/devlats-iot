@@ -6,6 +6,7 @@ interface NavbarProps {
   onLogoClick: () => void;
   onPlansClick: () => void;
   onPartnersClick: () => void;
+  onScrollToSection: (id: string) => void;
   variant?: 'home' | 'inner';
 }
 
@@ -14,10 +15,12 @@ const Navbar: React.FC<NavbarProps> = ({
   onLogoClick, 
   onPlansClick, 
   onPartnersClick,
+  onScrollToSection,
   variant = 'home'
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,21 +30,55 @@ const Navbar: React.FC<NavbarProps> = ({
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = ['Platform', 'Solutions', 'Plans', 'Partners'];
+  // Active Section Observer
+  useEffect(() => {
+    if (variant !== 'home') return;
 
-  const handleLinkClick = (link: string) => {
-    if (link === 'Plans') {
-      onPlansClick();
-    } else if (link === 'Partners') {
-      onPartnersClick();
-    } else {
-      onLogoClick();
-    }
+    const options = {
+      root: null,
+      rootMargin: '-100px 0px -40% 0px', // Adjust to trigger when section is in middle-ish
+      threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    }, options);
+
+    const sections = ['solution', 'features', 'platform'];
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, [variant]);
+
+  // Define Nav items with type
+  type NavItem = { label: string; id?: string; action?: 'plans' | 'partners' };
+
+  const navLinks: NavItem[] = [
+    { label: 'Solution', id: 'solution' },
+    { label: 'Features', id: 'features' },
+    { label: 'Platform', id: 'platform' },
+    { label: 'Plans', action: 'plans' },
+    { label: 'Partners', action: 'partners' }
+  ];
+
+  const handleLinkClick = (item: NavItem) => {
     setMobileMenuOpen(false);
+    if (item.id) {
+        onScrollToSection(item.id);
+    } else if (item.action === 'plans') {
+        onPlansClick();
+    } else if (item.action === 'partners') {
+        onPartnersClick();
+    }
   };
 
-  // Determine styles based on variant and scroll state
-  
   // Background Logic
   const navBackgroundClass = (() => {
     if (mobileMenuOpen) {
@@ -57,8 +94,6 @@ const Navbar: React.FC<NavbarProps> = ({
   })();
 
   // Text/Content Logic
-  // We want Light Text (white/slate-300) if background is Dark.
-  // Background is dark if: Mobile Menu Open OR (Home Variant AND Not Scrolled)
   const isLightText = mobileMenuOpen || (variant === 'home' && !isScrolled);
 
   const textColorClass = isLightText ? 'text-slate-300' : 'text-slate-600';
@@ -66,6 +101,14 @@ const Navbar: React.FC<NavbarProps> = ({
   const logoTextClass = isLightText ? 'text-white' : 'text-brand-950';
   const toggleButtonClass = isLightText ? 'text-white' : 'text-slate-900';
   const logoBoxClass = isLightText ? 'bg-brand-500' : 'bg-brand-600';
+
+  const getActiveStyle = (id?: string) => {
+      if (!id || variant !== 'home') return '';
+      if (activeSection === id) {
+          return isLightText ? 'text-white font-bold' : 'text-brand-600 font-bold';
+      }
+      return '';
+  };
 
   return (
     <nav
@@ -87,15 +130,19 @@ const Navbar: React.FC<NavbarProps> = ({
 
         {/* Desktop Nav */}
         <div className="hidden lg:flex items-center gap-8">
-          {navLinks.map((link) => (
+          {navLinks.map((item) => (
             <div 
-                key={link} 
+                key={item.label} 
                 className="relative group cursor-pointer" 
-                onClick={() => handleLinkClick(link)}
+                onClick={() => handleLinkClick(item)}
             >
-              <span className={`font-medium text-[1.2rem] flex items-center gap-1 transition-colors ${textColorClass} ${hoverColorClass}`}>
-                {link} 
+              <span className={`font-medium text-[1.2rem] flex items-center gap-1 transition-colors ${textColorClass} ${hoverColorClass} ${getActiveStyle(item.id)}`}>
+                {item.label} 
               </span>
+              {/* Active Dot indicator for light/dark modes */}
+              {item.id && activeSection === item.id && (
+                  <span className={`absolute -bottom-1 left-0 w-full h-0.5 rounded-full ${isLightText ? 'bg-white' : 'bg-brand-500'}`}></span>
+              )}
             </div>
           ))}
         </div>
@@ -121,14 +168,16 @@ const Navbar: React.FC<NavbarProps> = ({
       {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className="absolute top-full left-0 w-full bg-brand-900 border-b border-brand-800 p-6 flex flex-col gap-4 animate-slide-up shadow-2xl h-screen overflow-y-auto pb-32">
-            {navLinks.map((link) => (
+            {navLinks.map((item) => (
                 <a 
-                    key={link} 
+                    key={item.label} 
                     href="#" 
-                    onClick={(e) => { e.preventDefault(); handleLinkClick(link); }}
-                    className="text-slate-300 hover:text-brand-300 font-medium text-lg border-b border-brand-800 pb-2"
+                    onClick={(e) => { e.preventDefault(); handleLinkClick(item); }}
+                    className={`font-medium text-lg border-b border-brand-800 pb-2 ${
+                        item.id && activeSection === item.id ? 'text-white' : 'text-slate-300 hover:text-brand-300'
+                    }`}
                 >
-                    {link}
+                    {item.label}
                 </a>
             ))}
             <button 

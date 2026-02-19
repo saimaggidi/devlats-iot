@@ -41,7 +41,7 @@ const smartFeatures = [
 
 const SmartFeatures: React.FC = () => {
   return (
-    <section className="py-24 bg-brand-950 text-white relative overflow-hidden">
+    <section id="features" className="py-24 bg-brand-950 text-white relative overflow-hidden">
       {/* Background Decor */}
       <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-brand-900 to-transparent opacity-50"></div>
       

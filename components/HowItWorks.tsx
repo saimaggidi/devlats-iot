@@ -177,23 +177,24 @@ const HowItWorks: React.FC = () => {
 
                     {/* Screen 2: Captive Portal */}
                     {activeStep === 2 && (
-                       <div className="absolute inset-0 bg-white flex flex-col items-center pt-16 px-6 animate-fade-in">
+                       <div className="absolute inset-0 bg-white flex flex-col items-center justify-center px-6 animate-fade-in">
                           <div className="w-16 h-16 bg-brand-500 rounded-2xl flex items-center justify-center mb-6 shadow-xl rotate-12">
                              <Wifi className="w-8 h-8 text-white" />
                           </div>
-                          <h2 className="text-2xl font-bold text-slate-900 mb-2">Welcome</h2>
+                          <h2 className="text-xl font-bold text-slate-900 mb-2 text-center">Welcome To Devlats-IoT</h2>
                           <p className="text-slate-500 text-center text-sm mb-10">Sign in to access the Guest Network</p>
                           
-                          <div className="w-full space-y-3">
-                             <button className="w-full py-3 bg-blue-600 text-white rounded-lg font-semibold text-sm shadow-md hover:bg-blue-700 transition-colors">
-                                Login with SSO
+                          <div className="w-full space-y-4">
+                             <button className="w-full py-4 bg-blue-600 text-white rounded-xl font-bold text-sm shadow-lg hover:bg-blue-700 transition-colors flex items-center justify-center gap-2 group">
+                                Unlock WiFi <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                              </button>
-                             <button className="w-full py-3 bg-white border border-slate-200 text-slate-700 rounded-lg font-semibold text-sm hover:bg-slate-50 transition-colors">
-                                Connect with Email
-                             </button>
+                             <div className="flex items-center justify-center gap-2 text-xs text-slate-500">
+                                <Wifi className="w-3 h-3 text-green-500" />
+                                <span>Secure and fast WiFi for you</span>
+                             </div>
                           </div>
-                          <div className="mt-auto mb-8 text-xs text-slate-400 text-center">
-                             Powered by Cloudi-Fi
+                          <div className="mt-8 text-xs text-slate-400 text-center">
+                             Powered by Devlats-IoT
                           </div>
                        </div>
                     )}

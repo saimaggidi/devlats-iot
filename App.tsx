@@ -36,6 +36,27 @@ const App: React.FC = () => {
     window.scrollTo(0, 0);
   };
 
+  const handleScrollToSection = (id: string) => {
+    if (currentPage !== 'home') {
+        setCurrentPage('home');
+        // Wait for state update and render
+        setTimeout(() => {
+            const element = document.getElementById(id);
+            if (element) {
+                // Offset for fixed navbar (approx 80px)
+                const y = element.getBoundingClientRect().top + window.scrollY - 100;
+                window.scrollTo({top: y, behavior: 'smooth'});
+            }
+        }, 100);
+    } else {
+        const element = document.getElementById(id);
+        if (element) {
+            const y = element.getBoundingClientRect().top + window.scrollY - 100;
+            window.scrollTo({top: y, behavior: 'smooth'});
+        }
+    }
+  };
+
   return (
     <div className="min-h-screen bg-slate-50 font-sans selection:bg-brand-500 selection:text-white">
       <Navbar 
@@ -43,6 +64,7 @@ const App: React.FC = () => {
         onLogoClick={navigateToHome} 
         onPlansClick={navigateToPlans} 
         onPartnersClick={navigateToPartners}
+        onScrollToSection={handleScrollToSection}
         variant={currentPage === 'home' ? 'home' : 'inner'}
       />
       
