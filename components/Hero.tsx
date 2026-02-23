@@ -212,9 +212,9 @@ const Hero: React.FC<HeroProps> = ({ onStartTrial }) => {
         {/* Clients Strip */}
         <div className="mt-24 pt-10 border-t border-slate-800/50">
             <p className="text-center text-slate-500 text-sm font-semibold mb-8 uppercase tracking-widest">Trusted by global industry leaders</p>
-            <div className="flex flex-wrap justify-center items-center gap-6 lg:gap-8">
+             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8 max-[400px]:gap-[0.4rem]">
                  {clientLogos.map((logo, i) => (
-                     <div key={i} className="bg-white p-4 rounded-xl shadow-sm flex items-center justify-center w-[160px] h-[90px]">
+                     <div key={i} className="bg-white p-4 rounded-xl shadow-sm flex items-center justify-center w-full h-[90px]">
                         <img 
                             src={logo.url} 
                             alt={logo.name} 
