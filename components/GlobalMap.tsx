@@ -25,16 +25,16 @@ const testimonials = [
 ];
 
 const locations = [
-  { top: '28%', left: '22%', icon: Building2, label: 'Corporate HQ', delay: '0s' }, // NA West
-  { top: '34%', left: '26%', icon: ShoppingBag, label: 'Retail Mall', delay: '1s' }, // NA East
-  { top: '65%', left: '30%', icon: Coffee, label: 'Cafe Chain', delay: '2s' }, // SA
-  { top: '38%', left: '49%', icon: Store, label: 'Luxury Store', delay: '0.5s' }, // Europe
-  { top: '30%', left: '54%', icon: GraduationCap, label: 'University', delay: '1.5s' }, // Europe East
-  { top: '48%', left: '58%', icon: Plane, label: 'Intl. Airport', delay: '2.5s' }, // Middle East
-  { top: '65%', left: '56%', icon: Server, label: 'Data Center', delay: '1.2s' }, // Africa
-  { top: '42%', left: '72%', icon: Utensils, label: 'Restaurant', delay: '0.8s' }, // India
-  { top: '32%', left: '82%', icon: Building2, label: 'Tech Hub', delay: '1.8s' }, // Asia Japan/China
-  { top: '75%', left: '86%', icon: Store, label: 'Retail Branch', delay: '2.2s' }, // Australia
+  { top: '28%', left: '22%', mobileTop: '20%', mobileLeft: '15%', icon: Building2, label: 'Corporate HQ', delay: '0s' }, // NA West
+  { top: '34%', left: '26%', mobileTop: '35%', mobileLeft: '35%', icon: ShoppingBag, label: 'Retail Mall', delay: '1s' }, // NA East
+  { top: '65%', left: '30%', mobileTop: '75%', mobileLeft: '20%', icon: Coffee, label: 'Cafe Chain', delay: '2s' }, // SA
+  { top: '38%', left: '49%', mobileTop: '45%', mobileLeft: '50%', icon: Store, label: 'Luxury Store', delay: '0.5s' }, // Europe
+  { top: '30%', left: '54%', mobileTop: '25%', mobileLeft: '65%', icon: GraduationCap, label: 'University', delay: '1.5s' }, // Europe East
+  { top: '48%', left: '58%', mobileTop: '55%', mobileLeft: '80%', icon: Plane, label: 'Intl. Airport', delay: '2.5s' }, // Middle East
+  { top: '65%', left: '56%', mobileTop: '70%', mobileLeft: '50%', icon: Server, label: 'Data Center', delay: '1.2s' }, // Africa
+  { top: '42%', left: '72%', mobileTop: '85%', mobileLeft: '35%', icon: Utensils, label: 'Restaurant', delay: '0.8s' }, // India
+  { top: '32%', left: '82%', mobileTop: '15%', mobileLeft: '85%', icon: Building2, label: 'Tech Hub', delay: '1.8s' }, // Asia Japan/China
+  { top: '75%', left: '86%', mobileTop: '85%', mobileLeft: '80%', icon: Store, label: 'Retail Branch', delay: '2.2s' }, // Australia
 ];
 
 const GlobalMap: React.FC = () => {
@@ -92,8 +92,13 @@ const GlobalMap: React.FC = () => {
                 {locations.map((loc, i) => (
                     <div 
                         key={i} 
-                        className="absolute group/pin cursor-pointer" 
-                        style={{ top: loc.top, left: loc.left }}
+                        className="absolute group/pin cursor-pointer top-[var(--m-top)] left-[var(--m-left)] md:top-[var(--top)] md:left-[var(--left)]" 
+                        style={{ 
+                            '--top': loc.top, 
+                            '--left': loc.left,
+                            '--m-top': loc.mobileTop || loc.top,
+                            '--m-left': loc.mobileLeft || loc.left
+                        } as React.CSSProperties}
                     >
                          <div className="relative flex flex-col items-center justify-center">
                             {/* Loot Drop / Waypoint visual */}
@@ -102,18 +107,18 @@ const GlobalMap: React.FC = () => {
                                 
                                 {/* Outer Ring 1 */}
                                 <div 
-                                    className="absolute -inset-6 border border-brand-400/30 rounded-full animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite]"
+                                    className="absolute -inset-4 md:-inset-6 border border-brand-400/30 rounded-full animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite]"
                                     style={{ animationDelay: loc.delay }}
                                 ></div>
                                 {/* Outer Ring 2 */}
                                 <div 
-                                    className="absolute -inset-12 border border-brand-500/10 rounded-full animate-[ping_3s_cubic-bezier(0,0,0.2,1)_infinite]"
+                                    className="absolute -inset-8 md:-inset-12 border border-brand-500/10 rounded-full animate-[ping_3s_cubic-bezier(0,0,0.2,1)_infinite]"
                                     style={{ animationDelay: loc.delay }}
                                 ></div>
 
                                 {/* Core Icon */}
-                                <div className="relative z-10 w-12 h-12 bg-brand-600 border-2 border-brand-300 rounded-lg transform rotate-45 flex items-center justify-center shadow-[0_0_15px_rgba(32,226,255,0.6)] hover:scale-110 transition-transform">
-                                    <loc.icon className="w-6 h-6 text-white transform -rotate-45" />
+                                <div className="relative z-10 w-8 h-8 md:w-12 md:h-12 bg-brand-600 border-2 border-brand-300 rounded-lg transform rotate-45 flex items-center justify-center shadow-[0_0_15px_rgba(32,226,255,0.6)] hover:scale-110 transition-transform">
+                                    <loc.icon className="w-4 h-4 md:w-6 md:h-6 text-white transform -rotate-45" />
                                 </div>
                             </div>
 
